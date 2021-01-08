@@ -6,7 +6,17 @@
     "files.watcherExclude": {
         "**/.git/objects/**": true,
         "**/.git/subtree-cache/**": true,
-        "**/.hg/store/**": true
+        "**/.hg/store/**": true,
+        "**/node_modules/*/**": true,
+        "**/client/node_modules/*/**": true,
+        "**/vendor/*/**": true,
+        "**/storage/*/**": true,
+        "**/tests/*/**": true,
+        "**/app/*/**": true,
+        "**/bootstarp/*/**": true,
+        "**/database/*/**": true,
+        "**/config/*/**": true,
+        "**/routes/*/**": true
     },
     "editor.formatOnSave": true
 }
