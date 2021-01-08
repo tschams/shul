@@ -1,0 +1,12 @@
+{
+    "search.exclude": {
+        "package-lock.json": true,
+        "yarn.lock": true
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/.hg/store/**": true
+    },
+    "editor.formatOnSave": true
+}
