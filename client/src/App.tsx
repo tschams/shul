@@ -1,5 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Home } from "./pages/Home";
+import { About } from "./pages/About";
+import { Contact } from "./pages/Contact";
+import { Shiurim } from "./pages/Shiurim";
+import { Minyanim } from "./pages/Minyanim";
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -60,48 +65,5 @@ export default function BasicExample() {
                 </Switch>
             </div>
         </Router>
-    );
-}
-
-// You can think of these components as "pages"
-// in your app.
-
-function Home() {
-    return (
-        <div>
-            <h2>Home</h2>
-        </div>
-    );
-}
-
-function Minyanim() {
-    return (
-        <div>
-            <h2>Minyanim</h2>
-        </div>
-    );
-}
-
-function Shiurim() {
-    return (
-        <div>
-            <h2>Shiurim</h2>
-        </div>
-    );
-}
-
-function About() {
-    return (
-        <div>
-            <h2>About</h2>
-        </div>
-    );
-}
-
-function Contact() {
-    return (
-        <div>
-            <h2>Contact</h2>
-        </div>
     );
 }
