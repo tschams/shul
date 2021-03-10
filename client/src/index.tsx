@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "./css/styles.css";
+import { defaultTheme } from "./themes";
 import {
     // CssBaseline,
     // jssPreset,
@@ -76,7 +77,9 @@ function registerServiceWorker() {
 
 ReactDOM.render(
     <React.StrictMode>
-    	<App />
+        <ThemeProvider theme={defaultTheme}>
+            <App />
+        </ThemeProvider>
     </React.StrictMode>,
     document.getElementById("root")
 );
