@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import "./css/styles.css";
+import "./assets/css/styles.css";
 import { defaultTheme } from "./themes";
 import {
     // CssBaseline,
