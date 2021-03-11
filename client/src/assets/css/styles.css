@@ -7,6 +7,10 @@ body {
     font-family: "Archivo", sans-serif;
 }
 
+li {
+    list-style: none;
+}
+
 .form {
     width: 100%; /* Fix IE 11 issue. */
     margin-top: 1px;
