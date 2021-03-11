@@ -5,8 +5,6 @@ import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { Shiurim } from "./pages/Shiurim";
 import { Minyanim } from "./pages/Minyanim";
-import { Button } from "@material-ui/core";
-import { useStyles } from "./App.styles";
 import logo from "./assets/images/logo.jpg";
 
 // This site has 3 pages, all of which are rendered
@@ -19,34 +17,30 @@ import logo from "./assets/images/logo.jpg";
 // work properly.
 
 export default function App() {
-    const classes = useStyles();
-
     return (
         <Router>
             <div>
-                <ul className={classes.container}>
-                    <li className={classes.navItem}>
+                <ul>
+                    <li>
                         <img src={logo} alt="Company Logo" />
                     </li>
-                    <li className={classes.navItem}>
+                    <li>
                         <Link to="/">HOME</Link>
                     </li>
-                    <li className={classes.navItem}>
+                    <li>
                         <Link to="/minyanim">MINYANIM</Link>
                     </li>
-                    <li className={classes.navItem}>
+                    <li>
                         <Link to="/shiurim">SHIURIM</Link>
                     </li>
-                    <li className={classes.navItem}>
+                    <li>
                         <Link to="/about">ABOUT US</Link>
                     </li>
-                    <li className={classes.navItem}>
+                    <li>
                         <Link to="/contact">CONTACT US</Link>
                     </li>
-                    <li className={classes.navItem}>
-                        <Button variant="contained" color="primary">
-                            Donate
-                        </Button>
+                    <li>
+                        <button>Donate</button>
                     </li>
                 </ul>
 
