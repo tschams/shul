@@ -18,5 +18,6 @@
         "**/config/*/**": true,
         "**/routes/*/**": true
     },
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "god.tsconfig": "./tsconfig.json"
 }
