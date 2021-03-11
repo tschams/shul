@@ -5,6 +5,9 @@ import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { Shiurim } from "./pages/Shiurim";
 import { Minyanim } from "./pages/Minyanim";
+import { Button } from "@material-ui/core";
+import { useStyles } from "./App.styles";
+import logo from "./assets/images/logo.jpg";
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -15,29 +18,37 @@ import { Minyanim } from "./pages/Minyanim";
 // making sure things like the back button and bookmarks
 // work properly.
 
-export default function BasicExample() {
+export default function App() {
+    const classes = useStyles();
+
     return (
         <Router>
             <div>
-                <ul>
-                    <li>
+                <ul className={classes.container}>
+                    <li className={classes.navItem}>
+                        <img src={logo} alt="Company Logo" />
+                    </li>
+                    <li className={classes.navItem}>
                         <Link to="/">HOME</Link>
                     </li>
-                    <li>
+                    <li className={classes.navItem}>
                         <Link to="/minyanim">MINYANIM</Link>
                     </li>
-                    <li>
+                    <li className={classes.navItem}>
                         <Link to="/shiurim">SHIURIM</Link>
                     </li>
-                    <li>
+                    <li className={classes.navItem}>
                         <Link to="/about">ABOUT US</Link>
                     </li>
-                    <li>
+                    <li className={classes.navItem}>
                         <Link to="/contact">CONTACT US</Link>
                     </li>
+                    <li className={classes.navItem}>
+                        <Button variant="contained" color="primary">
+                            Donate
+                        </Button>
+                    </li>
                 </ul>
-
-                <hr />
 
                 {/*
           A <Switch> looks through all its children <Route>
