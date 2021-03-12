@@ -15,7 +15,8 @@
         // "noEmit": true,
         "jsx": "react",
         "noImplicitAny": false,
-        "sourceMap": false
+        "sourceMap": false,
+        "plugins": [{ "name": "typescript-plugin-css-modules" }]
     },
     "include": ["client/src/**/*"]
 }

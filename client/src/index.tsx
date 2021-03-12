@@ -76,9 +76,7 @@ function registerServiceWorker() {
 
 ReactDOM.render(
     <React.StrictMode>
-        {/* <ThemeProvider theme={defaultTheme}> */}
         <App />
-        {/* </ThemeProvider> */}
     </React.StrictMode>,
     document.getElementById("root")
 );

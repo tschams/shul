@@ -19,5 +19,6 @@
         "**/routes/*/**": true
     },
     "editor.formatOnSave": true,
-    "god.tsconfig": "./tsconfig.json"
+    "god.tsconfig": "./tsconfig.json",
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
