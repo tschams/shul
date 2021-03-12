@@ -3,21 +3,21 @@
 */
 
 body {
-    background-color: white;
-    font-family: "Archivo", sans-serif;
+  background-color: white;
+  font-family: "Archivo", sans-serif;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 .form {
-    width: 100%; /* Fix IE 11 issue. */
-    margin-top: 1px;
+  width: 100%; /* Fix IE 11 issue. */
+  margin-top: 1px;
 }
 
 .inblock {
-    display: inline-block;
+  display: inline-block;
 }
 
 /* Material-UI Overrides
@@ -25,13 +25,13 @@ li {
   */
 
 .MuiFormControlLabel-label {
-    user-select: none;
+  user-select: none;
 }
 
 .MuiInputLabel-animated {
-    user-select: none;
+  user-select: none;
 }
 
 .MuiInputLabel-formControl {
-    user-select: none;
+  user-select: none;
 }

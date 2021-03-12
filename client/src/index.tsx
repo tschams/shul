@@ -70,15 +70,15 @@ import "./assets/css/styles.css";
  *
  */
 function registerServiceWorker() {
-    // Example to implement register service worker:
-    // serviceWorker.register(serviceWorkerConfig);
+  // Example to implement register service worker:
+  // serviceWorker.register(serviceWorkerConfig);
 }
 
 ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
-    document.getElementById("root")
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // main();
