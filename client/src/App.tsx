@@ -5,6 +5,7 @@ import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { Shiurim } from "./pages/Shiurim";
 import { Minyanim } from "./pages/Minyanim";
+import { Login } from "./pages/Login";
 import logo from "./assets/images/logo.jpg";
 import styles from "./app.module.css";
 
@@ -40,6 +41,9 @@ export default function App() {
           <Link to="/contact">CONTACT US</Link>
         </li>
         <li>
+          <Link to="/login">LOGIN</Link>
+        </li>
+        <li>
           <button>Donate</button>
         </li>
       </ul>
@@ -66,6 +70,9 @@ export default function App() {
         </Route>
         <Route path="/contact">
           <Contact />
+        </Route>
+        <Route path="/login">
+          <Login />
         </Route>
       </Switch>
     </Router>
