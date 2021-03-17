@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         {{-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"> --}}
+        {{-- <link href="https://fonts.googleapis.com/css?family=Archivo&display=swap" rel="stylesheet"> --}}
 
         <!-- Styles -->
         <style>
@@ -16,9 +17,9 @@
         </style>
 
         <style>
-            body {
-                font-family: 'Nunito';
-            }
+            /* body {
+                font-family: 'Archivo';
+            } */
         </style>
     </head>
     <body class="antialiased">

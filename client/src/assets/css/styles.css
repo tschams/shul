@@ -2,6 +2,8 @@
  - See https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/CssBaseline/CssBaseline.js
 */
 
+@import url("https://fonts.googleapis.com/css?family=Archivo&display=swap");
+
 body {
   background-color: white;
   font-family: "Archivo", sans-serif;
