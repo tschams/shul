@@ -7,7 +7,7 @@ import { Shiurim } from "./pages/Shiurim";
 import { Minyanim } from "./pages/Minyanim";
 import { Login } from "./pages/Login";
 import logo from "./assets/images/logo.jpg";
-import styles from "./app.module.css";
+import styles from "./App.module.css";
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
