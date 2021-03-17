@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from "react-router-dom";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
@@ -23,28 +28,65 @@ export default function App() {
     <Router>
       <ul className={styles.container}>
         <li>
-          <img src={logo} alt="Company Logo" />
+          <img className={styles.logo} src={logo} alt="Company Logo" />
+        </li>
+        <li className={styles.navLinkContainer}>
+          <NavLink
+            className={styles.navLink}
+            exact
+            activeClassName="navLinkSelected"
+            to="/"
+          >
+            <span>HOME</span>
+          </NavLink>
+        </li>
+        <li className={styles.navLinkContainer}>
+          <NavLink
+            className={styles.navLink}
+            activeClassName="navLinkSelected"
+            to="/minyanim"
+          >
+            <span>MINYANIM</span>
+          </NavLink>
+        </li>
+        <li className={styles.navLinkContainer}>
+          <NavLink
+            className={styles.navLink}
+            activeClassName="navLinkSelected"
+            to="/shiurim"
+          >
+            <span>SHIURIM</span>
+          </NavLink>
+        </li>
+        <li className={styles.navLinkContainer}>
+          <NavLink
+            className={styles.navLink}
+            activeClassName="navLinkSelected"
+            to="/about"
+          >
+            <span>ABOUT US</span>
+          </NavLink>
+        </li>
+        <li className={styles.navLinkContainer}>
+          <NavLink
+            className={styles.navLink}
+            activeClassName="navLinkSelected"
+            to="/contact"
+          >
+            <span>CONTACT US</span>
+          </NavLink>
+        </li>
+        <li className={styles.navLinkContainer}>
+          <NavLink
+            className={styles.navLink}
+            activeClassName="navLinkSelected"
+            to="/login"
+          >
+            <span>LOGIN</span>
+          </NavLink>
         </li>
         <li>
-          <Link to="/">HOME</Link>
-        </li>
-        <li>
-          <Link to="/minyanim">MINYANIM</Link>
-        </li>
-        <li>
-          <Link to="/shiurim">SHIURIM</Link>
-        </li>
-        <li>
-          <Link to="/about">ABOUT US</Link>
-        </li>
-        <li>
-          <Link to="/contact">CONTACT US</Link>
-        </li>
-        <li>
-          <Link to="/login">LOGIN</Link>
-        </li>
-        <li>
-          <button>Donate</button>
+          <a className={styles.donateButton}>Donate</a>
         </li>
       </ul>
 
@@ -56,13 +98,13 @@ export default function App() {
           of them to render at a time
         */}
       <Switch>
-        <Route exact path="/">
+        <Route path="/">
           <Home />
         </Route>
-        <Route exact path="/minyanim">
+        <Route path="/minyanim">
           <Minyanim />
         </Route>
-        <Route exact path="/shiurim">
+        <Route path="/shiurim">
           <Shiurim />
         </Route>
         <Route path="/about">

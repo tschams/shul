@@ -9,6 +9,11 @@ body {
   font-family: "Archivo", sans-serif;
 }
 
+.navLinkSelected {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
 li {
   list-style: none;
 }
