@@ -99,7 +99,7 @@ export default function App() {
             of them to render at a time
           */}
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
           </Route>
           <Route path="/minyanim">
