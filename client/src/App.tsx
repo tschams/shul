@@ -25,98 +25,101 @@ import styles from "./App.module.css";
 
 export default function App() {
   return (
-    <Router>
-      <ul className={styles.container}>
-        <li>
-          <img className={styles.logo} src={logo} alt="Company Logo" />
-        </li>
-        <li className={styles.navLinkContainer}>
-          <NavLink
-            className={styles.navLink}
-            exact
-            activeClassName="navLinkSelected"
-            to="/"
-          >
-            <span>HOME</span>
-          </NavLink>
-        </li>
-        <li className={styles.navLinkContainer}>
-          <NavLink
-            className={styles.navLink}
-            activeClassName="navLinkSelected"
-            to="/minyanim"
-          >
-            <span>MINYANIM</span>
-          </NavLink>
-        </li>
-        <li className={styles.navLinkContainer}>
-          <NavLink
-            className={styles.navLink}
-            activeClassName="navLinkSelected"
-            to="/shiurim"
-          >
-            <span>SHIURIM</span>
-          </NavLink>
-        </li>
-        <li className={styles.navLinkContainer}>
-          <NavLink
-            className={styles.navLink}
-            activeClassName="navLinkSelected"
-            to="/about"
-          >
-            <span>ABOUT US</span>
-          </NavLink>
-        </li>
-        <li className={styles.navLinkContainer}>
-          <NavLink
-            className={styles.navLink}
-            activeClassName="navLinkSelected"
-            to="/contact"
-          >
-            <span>CONTACT US</span>
-          </NavLink>
-        </li>
-        <li className={styles.navLinkContainer}>
-          <NavLink
-            className={styles.navLink}
-            activeClassName="navLinkSelected"
-            to="/login"
-          >
-            <span>LOGIN</span>
-          </NavLink>
-        </li>
-        <li>
-          <a className={styles.donateButton}>Donate</a>
-        </li>
-      </ul>
+    <>
+      <Router>
+        <ul className={styles.navContainer}>
+          <li>
+            <img className={styles.logo} src={logo} alt="Company Logo" />
+          </li>
+          <li className={styles.navLinkContainer}>
+            <NavLink
+              className={styles.navLink}
+              exact
+              activeClassName="navLinkSelected"
+              to="/"
+            >
+              <span>HOME</span>
+            </NavLink>
+          </li>
+          <li className={styles.navLinkContainer}>
+            <NavLink
+              className={styles.navLink}
+              activeClassName="navLinkSelected"
+              to="/minyanim"
+            >
+              <span>MINYANIM</span>
+            </NavLink>
+          </li>
+          <li className={styles.navLinkContainer}>
+            <NavLink
+              className={styles.navLink}
+              activeClassName="navLinkSelected"
+              to="/shiurim"
+            >
+              <span>SHIURIM</span>
+            </NavLink>
+          </li>
+          <li className={styles.navLinkContainer}>
+            <NavLink
+              className={styles.navLink}
+              activeClassName="navLinkSelected"
+              to="/about"
+            >
+              <span>ABOUT US</span>
+            </NavLink>
+          </li>
+          <li className={styles.navLinkContainer}>
+            <NavLink
+              className={styles.navLink}
+              activeClassName="navLinkSelected"
+              to="/contact"
+            >
+              <span>CONTACT US</span>
+            </NavLink>
+          </li>
+          <li className={styles.navLinkContainer}>
+            <NavLink
+              className={styles.navLink}
+              activeClassName="navLinkSelected"
+              to="/login"
+            >
+              <span>LOGIN</span>
+            </NavLink>
+          </li>
+          <li>
+            <a className={styles.donateButton}>Donate</a>
+          </li>
+        </ul>
 
-      {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
-      <Switch>
-        <Route path="/">
-          <Home />
-        </Route>
-        <Route path="/minyanim">
-          <Minyanim />
-        </Route>
-        <Route path="/shiurim">
-          <Shiurim />
-        </Route>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/contact">
-          <Contact />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-      </Switch>
-    </Router>
+        {/*
+            A <Switch> looks through all its children <Route>
+            elements and renders the first one whose path
+            matches the current URL. Use a <Switch> any time
+            you have multiple routes, but you want only one
+            of them to render at a time
+          */}
+        <Switch>
+          <Route path="/">
+            <Home />
+          </Route>
+          <Route path="/minyanim">
+            <Minyanim />
+          </Route>
+          <Route path="/shiurim">
+            <Shiurim />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/contact">
+            <Contact />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+        </Switch>
+      </Router>
+      <footer>&copy; 2021 All rights reserved</footer>
+    </>
   );
 }

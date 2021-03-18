@@ -1,4 +1,4 @@
-.container {
+.navContainer {
   width: 80%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -8,7 +8,7 @@
   padding: 0;
   justify-items: center;
 }
-.container:not(:first-child) {
+.navContainer:not(:first-child) {
   cursor: pointer;
 }
 .navLinkContainer {
@@ -50,4 +50,10 @@
 .donateButton:active {
   box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
     0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+}
+footer {
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.02857em;
+  padding: 1rem;
 }
