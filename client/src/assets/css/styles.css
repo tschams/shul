@@ -30,6 +30,11 @@ li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 .form {
   width: 100%; /* Fix IE 11 issue. */
   margin-top: 1px;

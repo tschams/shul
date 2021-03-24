@@ -1,0 +1,75 @@
+.inputAndLabelContainer {
+  position: relative;
+  width: 200px;
+  cursor: text;
+}
+.label {
+  transform: translate(12px, 20px) scale(1);
+  pointer-events: none;
+  transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  color: rgba(0, 0, 0, 0.54);
+  letter-spacing: 0.00938em;
+  transform-origin: top left;
+  position: absolute;
+}
+.input {
+  border: 0;
+  height: 1.1876em;
+  box-sizing: border-box;
+  padding: 6px 0 7px;
+  background: none;
+  font-size: 1rem;
+}
+.input:focus {
+  outline: 0;
+}
+.inputAndLabelContainer:focus-within .label {
+  transform: translate(12px, 10px) scale(0.75);
+  transform-origin: top left;
+  color: #3f51b5;
+  transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms,
+    transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+.inputContainer::before {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "\00a0";
+  position: absolute;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+  pointer-events: none;
+}
+.inputContainer {
+  box-sizing: border-box;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  letter-spacing: 0.00938em;
+  background-color: rgba(0, 0, 0, 0.09);
+  padding: 27px 12px 10px;
+}
+.inputContainer::after {
+  border-bottom: 2px solid #3f51b5;
+  left: 0;
+  bottom: 0;
+  content: "";
+  position: absolute;
+  right: 0;
+  transform: scaleX(0);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  pointer-events: none;
+}
+.inputAndLabelContainer:focus-within .inputContainer::after {
+  transform: scaleX(1);
+}
+.unTransitionLabel {
+  transform: translate(12px, 10px) scale(0.75);
+  transform-origin: top left;
+}
+.inputContainerHover:hover:not(.inputAndLabelContainer:focus-within
+    .inputContainer) {
+  background-color: rgba(0, 0, 0, 0.13);
+}
+.inputContainerHover:hover::before {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.87);
+}
