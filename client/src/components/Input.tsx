@@ -1,10 +1,18 @@
 import React from "react";
 import styles from "./Input.module.css";
 import clsx from "clsx";
+import { camelCaseToSentence } from "../utils";
 
-function _Input() {
+type Props = { value: string; name: string; onNameChange: Function };
+
+function _Input({ value, onNameChange, name }: Props) {
+  const inputProps = { value, name };
   const inputEl = React.useRef<HTMLInputElement>(null);
-  const [input, setInput] = React.useState("");
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) =>
+      onNameChange({ [e.target.name]: e.target.value }),
+    [onNameChange]
+  );
 
   return (
     <div
@@ -14,11 +22,11 @@ function _Input() {
       <label
         id="name-label"
         className={clsx(styles.label, {
-          [styles.unTransitionLabel]: input,
+          [styles.unTransitionLabel]: value,
         })}
         htmlFor="name"
       >
-        Name
+        {camelCaseToSentence(name)}
       </label>
       <div className={clsx(styles.inputContainer, styles.inputContainerHover)}>
         <input
@@ -27,8 +35,8 @@ function _Input() {
           className={styles.input}
           type="text"
           id="name"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          {...inputProps}
+          onChange={handleChange}
         />
       </div>
     </div>
