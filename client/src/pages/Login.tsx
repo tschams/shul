@@ -1,9 +1,10 @@
 import React from "react";
+import { HebrewKeyboard } from "../components/HebrewKeyboard";
 import { Input } from "../components/Input";
 import { objectArrayToObject } from "../utils";
 
 function _Login() {
-  const inputNames = ["firstName", "lastName"];
+  const inputNames = ["firstName", "lastName", "hebrewName"];
   const [inputs, setInputs] = React.useState(() => {
     const inputArray = inputNames.map((e) => ({ [e]: "" }));
     return objectArrayToObject(inputArray);
@@ -16,7 +17,13 @@ function _Login() {
   return (
     <form noValidate autoComplete="off">
       {inputNames.map((e, i) => (
-        <Input key={i} value={inputs[e]} name={e} onNameChange={handleChange} />
+        <Input
+          key={i}
+          value={inputs[e]}
+          name={e}
+          onNameChange={handleChange}
+          children={e === "hebrewName" && <HebrewKeyboard />}
+        />
       ))}
     </form>
   );

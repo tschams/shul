@@ -3,9 +3,14 @@ import styles from "./Input.module.css";
 import clsx from "clsx";
 import { camelCaseToSentence } from "../utils";
 
-type Props = { value: string; name: string; onNameChange: Function };
+type Props = {
+  value: string;
+  name: string;
+  onNameChange: Function;
+  children?: React.ReactNode;
+};
 
-function _Input({ value, onNameChange, name }: Props) {
+function _Input({ value, onNameChange, name, children }: Props) {
   const inputProps = { value, name };
   const inputEl = React.useRef<HTMLInputElement>(null);
   const handleChange = React.useCallback(
@@ -38,6 +43,7 @@ function _Input({ value, onNameChange, name }: Props) {
           {...inputProps}
           onChange={handleChange}
         />
+        {children && <span>{children}</span>}
       </div>
     </div>
   );
