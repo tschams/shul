@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->date('date_of_birth')->nullable();
+            $table->date('hebrew_date_of_birth')->nullable();
             $table->boolean('admin');
             $table->timestamps();
             $table->softDeletes();
