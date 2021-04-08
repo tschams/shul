@@ -1,24 +1,28 @@
 {
-    "search.exclude": {
-        "package-lock.json": true,
-        "yarn.lock": true
-    },
-    "files.watcherExclude": {
-        "**/.git/objects/**": true,
-        "**/.git/subtree-cache/**": true,
-        "**/.hg/store/**": true,
-        "**/node_modules/*/**": true,
-        "**/client/node_modules/*/**": true,
-        "**/vendor/*/**": true,
-        "**/storage/*/**": true,
-        "**/tests/*/**": true,
-        "**/app/*/**": true,
-        "**/bootstarp/*/**": true,
-        "**/database/*/**": true,
-        "**/config/*/**": true,
-        "**/routes/*/**": true
-    },
-    "editor.formatOnSave": true,
-    "god.tsconfig": "./tsconfig.json",
-    "typescript.tsdk": "node_modules/typescript/lib"
+  "search.exclude": {
+    "package-lock.json": true,
+    "yarn.lock": true
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/.hg/store/**": true,
+    "**/node_modules/*/**": true,
+    "**/client/node_modules/*/**": true,
+    "**/vendor/*/**": true,
+    "**/storage/*/**": true,
+    "**/tests/*/**": true,
+    "**/app/*/**": true,
+    "**/bootstarp/*/**": true,
+    "**/database/*/**": true,
+    "**/config/*/**": true,
+    "**/routes/*/**": true
+  },
+  "editor.formatOnSave": true,
+  "god.tsconfig": "./tsconfig.json",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "emmet.includeLanguages": {
+    "javascript": "typescriptreact"
+  },
+  "emmet.triggerExpansionOnTab": true
 }
