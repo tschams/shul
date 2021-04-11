@@ -1,6 +1,7 @@
 import React from "react";
 import { HebrewKeyboard } from "../components/HebrewKeyboard";
 import { Input } from "../components/Input";
+import { RadioButtons } from "../components/RadioButtons";
 import { objectArrayToObject } from "../utils";
 
 function _Login() {
@@ -16,6 +17,7 @@ function _Login() {
 
   return (
     <form noValidate autoComplete="off">
+      <RadioButtons />
       {inputNames.map((e, i) => (
         <Input
           key={i}
