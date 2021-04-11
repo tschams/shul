@@ -13,6 +13,7 @@ import { Minyanim } from "./pages/Minyanim";
 import { Login } from "./pages/Login";
 import logo from "./assets/images/logo.jpg";
 import styles from "./App.module.css";
+import { Button } from "./components/Button";
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -87,7 +88,7 @@ export default function App() {
             </NavLink>
           </li>
           <li>
-            <a className={styles.donateButton}>Donate</a>
+            <Button>Donate</Button>
           </li>
         </ul>
 

@@ -21,6 +21,22 @@ body {
   grid-template-columns: 100%;
 }
 
+span.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 950ms linear;
+  background-color: currentColor;
+  opacity: 0.2;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
 .navLinkSelected {
   background-color: rgba(0, 0, 0, 0.15);
   border-radius: 4px;
