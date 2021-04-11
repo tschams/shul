@@ -21,7 +21,9 @@
     "noImplicitThis": true,
     "strict": true,
     "strictNullChecks": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["node"],
+    "typeRoots": ["client/node_modules/@types"]
   },
   "include": ["client/src/**/*"]
 }
