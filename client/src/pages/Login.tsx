@@ -8,7 +8,7 @@ import { objectArrayToObject } from "../utils";
 function _Login() {
   const inputNames = ["firstName", "lastName", "hebrewName"];
   const [inputs, setInputs] = React.useState(() => {
-    const inputArray = inputNames.map((e) => ({ [e]: "" }));
+    const inputArray = inputNames.map((e) => ({ [e]: undefined }));
     return objectArrayToObject(inputArray);
   });
   const handleChange = React.useCallback(
