@@ -6,9 +6,11 @@ function _RadioButtons() {
 
   const genders = ["male", "female"];
 
-  const radioChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setGenderType(event.target.value);
-  };
+  const radioChangeHandler = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) =>
+      setGenderType(event.target.value),
+    []
+  );
 
   return (
     <>
