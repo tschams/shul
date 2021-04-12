@@ -2,7 +2,7 @@ import React from "react";
 import { RadioButton } from "./RadioButton";
 
 function _RadioButtons() {
-  const [genderType, setGenderType] = React.useState("");
+  const [genderType, setGenderType] = React.useState<null | string>(null);
 
   const genders = ["male", "female"];
 
