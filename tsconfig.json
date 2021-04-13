@@ -25,5 +25,6 @@
     "types": ["node"],
     "typeRoots": ["client/node_modules/@types"]
   },
-  "include": ["client/src/**/*"]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "client/node_modules"]
 }
