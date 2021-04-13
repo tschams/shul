@@ -4,6 +4,7 @@ import { Input } from "../components/Input";
 import { RadioButtons } from "../components/RadioButtons";
 import { SelectInput } from "../components/SelectInput";
 import { objectArrayToObject } from "../utils";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function _Login() {
   const inputNames = ["firstName", "lastName", "hebrewName"];
@@ -15,9 +16,16 @@ function _Login() {
     (value: object) => setInputs({ ...inputs, ...value }),
     [inputs]
   );
+  function onChange(value: string | null) {
+    console.log("Captcha value:", value);
+  }
 
   return (
     <form noValidate autoComplete="off">
+      <ReCAPTCHA
+        sitekey={process.env.MIX_RECAPTCHA_SITE_KEY as string}
+        onChange={(v) => onChange(v)}
+      />
       <SelectInput />
       <RadioButtons />
       {inputNames.map((e, i) => (
