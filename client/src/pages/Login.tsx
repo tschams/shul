@@ -9,7 +9,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 function _Login() {
   const inputNames = ["firstName", "lastName", "hebrewName"];
   const [inputs, setInputs] = React.useState(() => {
-    const inputArray = inputNames.map((e) => ({ [e]: undefined }));
+    const inputArray = inputNames.map((e) => ({ [e]: "" }));
     return objectArrayToObject(inputArray);
   });
   const handleChange = React.useCallback(
