@@ -25,10 +25,6 @@
     "javascript": "typescriptreact"
   },
   "emmet.triggerExpansionOnTab": true,
-  "cSpell.words": [
-    "Recaptcha",
-    "Yisroel",
-    "browserslist",
-    "clsx"
-  ]
+  "cSpell.words": ["Recaptcha", "Yisroel", "browserslist", "clsx"],
+  "editor.formatOnSaveTimeout": 5000
 }
