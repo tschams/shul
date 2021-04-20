@@ -23,6 +23,12 @@
         </style>
     </head>
     <body class="antialiased">
+      <form>
+        <div>
+             <a href="{{ url('/login/facebook') }}" > Facebook</a>
+             <a href="{{ url('/login/google') }}" > Google</a>
+        </div>
+      </form>
         <div id="root"></div>
         <script src="{{ mix('js/app.js') }}"></script>
     </body>

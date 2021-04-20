@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SocialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::fallback(function () {
   return view('welcome');
 });
+
+Route::get('login/{provider}', [SocialController::class, 'redirect']);
+
+Route::get('login/{provider}/callback', [SocialController::class, 'callback']);
