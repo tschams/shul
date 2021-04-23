@@ -22,12 +22,12 @@ function _Input({ value, onNameChange, name, children }: Props) {
   return (
     <div
       className={styles.inputAndLabelContainer}
-      onClick={() => inputEl.current && inputEl.current.focus()}
+      onClick={() => inputEl.current?.focus()}
     >
       <label
         id="name-label"
         className={clsx(styles.label, {
-          [styles.unTransitionLabel]: value,
+          [styles.unTransitionLabel]: value
         })}
         htmlFor="name"
       >
