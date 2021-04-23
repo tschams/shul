@@ -15,6 +15,7 @@ import logo from "./assets/images/logo.jpg";
 import styles from "./App.module.css";
 import { Button } from "./components/Button";
 import clsx from "clsx";
+import { useOnMount } from "../customHooks";
 
 // This site has 3 pages, all of which are rendered
 // dynamically in the browser (not server rendered).
@@ -38,12 +39,12 @@ export default function App() {
     setModal(false);
   }, []);
 
-  React.useEffect(() => {
+  useOnMount(() => {
     document.addEventListener("mousedown", e => handleClick(e));
     return () => {
       document.removeEventListener("mousedown", e => handleClick(e));
     };
-  }, [handleClick]);
+  });
 
   return (
     <>
