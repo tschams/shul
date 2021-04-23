@@ -36,3 +36,6 @@ footer {
   letter-spacing: 0.02857em;
   padding: 1rem;
 }
+.login {
+  cursor: pointer;
+}
