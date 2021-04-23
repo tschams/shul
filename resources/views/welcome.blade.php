@@ -23,12 +23,12 @@
         </style>
     </head>
     <body class="antialiased">
-      <form>
+      {{-- <form>
         <div>
              <a href="{{ url('/login/facebook') }}" > Facebook</a>
              <a href="{{ url('/login/google') }}" > Google</a>
         </div>
-      </form>
+      </form> --}}
         <div id="root"></div>
         <script src="{{ mix('js/app.js') }}"></script>
     </body>
