@@ -1,32 +1,27 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Shiurim from "./pages/Shiurim";
-import Minyanim from "./pages/Minyanim";
 import Nav from "./Nav";
+import { capitalizeFirstLetter } from "./utils";
 
 export default React.memo(function _App() {
+  const routes = ["home", "minyanim", "shiurim", "about", "contact"];
+
   return (
     <>
       <Router>
-        <Nav />
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/minyanim">
-          <Minyanim />
-        </Route>
-        <Route path="/shiurim">
-          <Shiurim />
-        </Route>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/contact">
-          <Contact />
-        </Route>
+        <Suspense fallback={<span>Loading...</span>}>
+          <Nav />
+          {routes.map((route, i) => (
+            <Route
+              key={i}
+              exact={route === "home"}
+              path={route === "home" ? "/" : `/${route}`}
+              component={lazy(() =>
+                import(`./pages/${capitalizeFirstLetter(route)}`)
+              )}
+            ></Route>
+          ))}
+        </Suspense>
       </Router>
       <footer className="footer">&copy; 2021 All rights reserved</footer>
     </>
