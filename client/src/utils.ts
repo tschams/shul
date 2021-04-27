@@ -1,4 +1,4 @@
-export const camelCaseToSentence = (string: string) => {
+export function camelCaseToSentence(string: string) {
   const sentenceCase = string
     .split("")
     .map((e) => (e === e.toUpperCase() ? " " + e : e))
@@ -6,7 +6,7 @@ export const camelCaseToSentence = (string: string) => {
   return sentenceCase.charAt(0).toUpperCase() + sentenceCase.slice(1);
 };
 
-export const objectArrayToObject = (array: {}[]) => {
+export function objectArrayToObject(array: {}[]) {
   return array.reduce(
     (accumulator, current) => ({ ...accumulator, ...current }),
     {}
