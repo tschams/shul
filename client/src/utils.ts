@@ -3,7 +3,7 @@ export function camelCaseToSentence(string: string) {
     .split("")
     .map((e) => (e === e.toUpperCase() ? " " + e : e))
     .join("");
-  return sentenceCase.charAt(0).toUpperCase() + sentenceCase.slice(1);
+  return capitalizeFirstLetter(sentenceCase);
 };
 
 export function objectArrayToObject(array: {}[]) {
@@ -12,3 +12,7 @@ export function objectArrayToObject(array: {}[]) {
     {}
   );
 };
+
+export function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
