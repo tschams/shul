@@ -1,7 +1,7 @@
 import React from "react";
-import { RadioButton } from "./RadioButton";
+import RadioButton from "./RadioButton";
 
-function _RadioButtons() {
+export default React.memo(function _RadioButtons() {
   const [genderType, setGenderType] = React.useState<null | string>(null);
 
   const genders = ["male", "female"];
@@ -32,6 +32,4 @@ function _RadioButtons() {
       </h2>
     </>
   );
-}
-
-export const RadioButtons = React.memo(_RadioButtons);
+});

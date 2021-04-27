@@ -1,8 +1,8 @@
 import React from "react";
-import { Input } from "../components/Input";
+import Input from "../components/Input";
 import { objectArrayToObject } from "../utils";
 
-function _Login() {
+export default React.memo(function _Login() {
   const inputNames = ["firstName", "lastName", "hebrewName"];
   const [inputs, setInputs] = React.useState(() => {
     const inputArray = inputNames.map(e => ({ [e]: "" }));
@@ -20,6 +20,4 @@ function _Login() {
       ))}
     </form>
   );
-}
-
-export const Login = React.memo(_Login);
+});

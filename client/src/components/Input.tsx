@@ -10,7 +10,12 @@ type Props = {
   children?: React.ReactNode;
 };
 
-function _Input({ value, onNameChange, name, children }: Props) {
+export default React.memo(function _Input({
+  value,
+  onNameChange,
+  name,
+  children
+}: Props) {
   const inputProps = { value, name };
   const inputEl = React.useRef<HTMLInputElement>(null);
   const handleChange = React.useCallback(
@@ -47,6 +52,4 @@ function _Input({ value, onNameChange, name, children }: Props) {
       </div>
     </div>
   );
-}
-
-export const Input = React.memo(_Input);
+});

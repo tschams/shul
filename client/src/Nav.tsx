@@ -1,13 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Login } from "./pages/Login";
+import Login from "./pages/Login";
 import logo from "./assets/images/logo.jpg";
 import styles from "./Nav.module.css";
-import { Button } from "./components/Button";
+import Button from "./components/Button";
 import clsx from "clsx";
 import { useOnMount } from "./customHooks";
 
-function _Nav() {
+export default React.memo(function _Nav() {
   const ref = React.useRef<HTMLSpanElement>(null);
   const [modal, setModal] = React.useState(false);
 
@@ -101,6 +101,4 @@ function _Nav() {
       </ul>
     </>
   );
-}
-
-export const Nav = React.memo(_Nav);
+});

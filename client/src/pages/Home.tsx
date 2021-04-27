@@ -1,11 +1,9 @@
 import React from "react";
 
-function _Home() {
+export default React.memo(function _Home() {
   return (
     <>
       <h2>Home</h2>
     </>
   );
-}
-
-export const Home = React.memo(_Home);
+});

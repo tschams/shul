@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Button.module.css";
 
-function _Button({ children }) {
+export default React.memo(function _Button({ children }) {
   const createRipple = React.useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       const button = event.currentTarget;
@@ -33,6 +33,4 @@ function _Button({ children }) {
       </button>
     </>
   );
-}
-
-export const Button = React.memo(_Button);
+});

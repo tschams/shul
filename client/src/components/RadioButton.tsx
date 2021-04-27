@@ -9,13 +9,19 @@ type Props = {
   value: string;
 };
 
-function _RadioButton({ changed, id, isSelected, label, value }: Props) {
+export default React.memo(function _RadioButton({
+  changed,
+  id,
+  isSelected,
+  label,
+  value
+}: Props) {
   return (
     <>
       <label className={styles.radio} htmlFor={id}>
         <input
           id={id}
-          onChange={(e) => changed(e)}
+          onChange={e => changed(e)}
           value={value}
           type="radio"
           checked={isSelected}
@@ -24,6 +30,4 @@ function _RadioButton({ changed, id, isSelected, label, value }: Props) {
       </label>
     </>
   );
-}
-
-export const RadioButton = React.memo(_RadioButton);
+});
