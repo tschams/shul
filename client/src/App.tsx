@@ -10,7 +10,7 @@ export default React.memo(function _App() {
     <>
       <Router>
         <Suspense fallback={<span>Loading...</span>}>
-          <Nav />
+          <Nav routes={routes} />
           {routes.map((route, i) => (
             <Route
               key={i}

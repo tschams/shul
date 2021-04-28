@@ -7,16 +7,47 @@ import Button from "./components/Button";
 import clsx from "clsx";
 import { useOnMount } from "./customHooks";
 
-export default React.memo(function _Nav() {
+type Props = {
+  routes: string[];
+};
+
+const Img = React.memo(() => {
+  return <img className={styles.logo} src={logo} alt="Company Logo"></img>;
+});
+
+const DonateButton = React.memo(() => {
+  return <Button>Donate</Button>;
+});
+
+export default React.memo(function _Nav({ routes }: Props) {
   const ref = React.useRef<HTMLSpanElement>(null);
   const [modal, setModal] = React.useState(false);
 
+  const LoginLink = React.memo(() => {
+    return !modal ? (
+      <li className={styles.navLinkContainer}>
+        <span
+          onClick={() => setModal(!modal)}
+          className={clsx(styles.navLink, styles.login)}
+        >
+          <span>
+            LOGIN<strong>/</strong>REGISTER
+          </span>
+        </span>
+      </li>
+    ) : (
+      <span ref={ref}>
+        <Login />
+      </span>
+    );
+  });
+
+  const nodes = [Img, ...routes, LoginLink, DonateButton];
+
   const handleClick = React.useCallback((e: MouseEvent) => {
     if (ref.current?.contains(e.target as Node)) {
-      // inside click
       return;
     }
-    // outside click
     setModal(false);
   }, []);
 
@@ -30,74 +61,26 @@ export default React.memo(function _Nav() {
   return (
     <>
       <ul className={styles.navContainer}>
-        <li>
-          <img className={styles.logo} src={logo} alt="Company Logo" />
-        </li>
-        <li className={styles.navLinkContainer}>
-          <NavLink
-            className={styles.navLink}
-            exact
-            activeClassName="navLinkSelected"
-            to="/"
-          >
-            <span>HOME</span>
-          </NavLink>
-        </li>
-        <li className={styles.navLinkContainer}>
-          <NavLink
-            className={styles.navLink}
-            activeClassName="navLinkSelected"
-            to="/minyanim"
-          >
-            <span>MINYANIM</span>
-          </NavLink>
-        </li>
-        <li className={styles.navLinkContainer}>
-          <NavLink
-            className={styles.navLink}
-            activeClassName="navLinkSelected"
-            to="/shiurim"
-          >
-            <span>SHIURIM</span>
-          </NavLink>
-        </li>
-        <li className={styles.navLinkContainer}>
-          <NavLink
-            className={styles.navLink}
-            activeClassName="navLinkSelected"
-            to="/about"
-          >
-            <span>ABOUT US</span>
-          </NavLink>
-        </li>
-        <li className={styles.navLinkContainer}>
-          <NavLink
-            className={styles.navLink}
-            activeClassName="navLinkSelected"
-            to="/contact"
-          >
-            <span>CONTACT US</span>
-          </NavLink>
-        </li>
-        {!modal ? (
-          <li className={styles.navLinkContainer}>
-            <span
-              onClick={() => setModal(!modal)}
-              className={clsx(styles.navLink, styles.login)}
-            >
-              <span>
-                LOGIN<strong>/</strong>REGISTER
-              </span>
-            </span>
-          </li>
-        ) : (
-          <span ref={ref}>
-            <Login />
-          </span>
-        )}
-        <li>
-          <Button>Donate</Button>
-        </li>
+        {nodes.map((Node, i) => {
+          return Node === LoginLink ? (
+            <Node key={i} />
+          ) : typeof Node !== "string" ? (
+            <li key={i}>
+              <Node />
+            </li>
+          ) : (
+            <li key={i} className={styles.navLinkContainer}>
+              <NavLink
+                className={styles.navLink}
+                activeClassName="navLinkSelected"
+                exact={Node === "home"}
+                to={Node === "home" ? "/" : `/${Node}`}
+              >
+                <span>{Node.toUpperCase()}</span>
+              </NavLink>
+            </li>
+          );
+        })}
       </ul>
     </>
   );
