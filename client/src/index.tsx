@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "./assets/css/styles.css";
+import ErrorBoundary from "./ErrorBoundary";
 // import {
 // CssBaseline,
 // jssPreset,
@@ -76,7 +77,9 @@ function registerServiceWorker() {
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById("root")
 );
