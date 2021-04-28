@@ -9,8 +9,8 @@ export default React.memo(function _App() {
   return (
     <>
       <Router>
+        <Nav routes={routes} />
         <Suspense fallback={<span>Loading...</span>}>
-          <Nav routes={routes} />
           {routes.map((route, i) => (
             <Route
               key={i}
