@@ -20,7 +20,7 @@ const DonateButton = React.memo(() => {
 });
 
 export default React.memo(function _Nav({ routes }: Props) {
-  const ref = React.useRef<HTMLSpanElement>(null);
+  const ref = React.useRef<HTMLDivElement>(null);
   const [modal, setModal] = React.useState(false);
 
   const LoginLink = React.memo(() => {
@@ -36,9 +36,9 @@ export default React.memo(function _Nav({ routes }: Props) {
         </span>
       </li>
     ) : (
-      <span ref={ref}>
+      <div ref={ref}>
         <Login />
-      </span>
+      </div>
     );
   });
 
