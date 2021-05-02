@@ -16,9 +16,9 @@ mix
   .js("resources/js/app.js", "public/js")
   .react()
   // .sass("resources/sass/app.scss", "public/css")
-  .postCss("resources/css/app.css", "public/css", [
-    //
-  ])
+  // .postCss("resources/css/app.css", "public/css", [
+  //   //
+  // ])
   .webpackConfig({
     module: {
       rules: [
@@ -30,7 +30,7 @@ mix
       ],
     },
     resolve: {
-      extensions: ["*", ".js", ".jsx", ".vue", ".ts", ".tsx"],
+      extensions: ["*", ".js", ".ts", ".tsx"],
       alias: {
         '@components': path.resolve('client/src/components/'),
         '@images': path.resolve('client/src/assets/images/')
