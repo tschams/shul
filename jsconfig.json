@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./client/src/",
+    "paths": {
+      "@components/*": [
+        "components/*"
+      ],
+      "@images/*": ["assets/images/*"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "public"
+  ]
+}
