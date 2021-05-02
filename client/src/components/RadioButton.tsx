@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./RadioButton.module.css";
+import styles from "@cssComponents/RadioButton.module.css";
 
 type Props = {
   changed: Function;

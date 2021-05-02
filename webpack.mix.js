@@ -33,7 +33,9 @@ mix
       extensions: ["*", ".js", ".ts", ".tsx"],
       alias: {
         '@components': path.resolve('client/src/components/'),
-        '@images': path.resolve('client/src/assets/images/')
+        '@images': path.resolve('client/src/assets/images/'),
+        '@css': path.resolve('client/src/assets/css/'),
+        '@cssComponents': path.resolve('client/src/assets/css/components/'),
     }
     },
   });

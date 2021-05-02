@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Login from "./pages/Login";
 import logo from "@images/logo.jpg";
-import styles from "./Nav.module.css";
+import styles from "@css/Nav.module.css";
 import Button from "./components/Button";
 import clsx from "clsx";
 import { useOnMount } from "./customHooks";

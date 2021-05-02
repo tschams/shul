@@ -2,14 +2,11 @@
   "compilerOptions": {
     "baseUrl": "./client/src/",
     "paths": {
-      "@components/*": [
-        "components/*"
-      ],
-      "@images/*": ["assets/images/*"]
+      "@components/*": ["components/*"],
+      "@images/*": ["assets/images/*"],
+      "@css/*": ["assets/css/*"],
+      "@cssComponents/*": ["assets/css/components/*"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "public"
-  ]
+  "exclude": ["node_modules", "public"]
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Input.module.css";
+import styles from "@cssComponents/Input.module.css";
 import clsx from "clsx";
 import { camelCaseToSentence } from "../utils";
 

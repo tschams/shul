@@ -26,10 +26,10 @@
     "typeRoots": ["client/node_modules/@types"],
     "baseUrl": "./client/src/",
     "paths": {
-      "@components/*": [
-        "components/*"
-      ],
-      "@images/*": ["assets/images/*"]
+      "@components/*": ["components/*"],
+      "@images/*": ["assets/images/*"],
+      "@css/*": ["assets/css/*"],
+      "@cssComponents/*": ["assets/css/components/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

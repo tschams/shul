@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./RadioButton.module.scss";
+import styles from "@cssComponents/RadioButton.module.scss";
 import clsx from "clsx";
 
 type Props = {

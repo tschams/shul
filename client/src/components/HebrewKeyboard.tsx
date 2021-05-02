@@ -2,7 +2,7 @@ import React from "react";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 import layout from "simple-keyboard-layouts/build/layouts/hebrew";
-import styles from "./HebrewKeyboard.module.css";
+import styles from "@cssComponents/HebrewKeyboard.module.css";
 
 export default React.memo(function _HebrewKeyboard() {
   const onChange = input => {

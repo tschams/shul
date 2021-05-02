@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Button.module.css";
+import styles from "@cssComponents/Button.module.css";
 
 export default React.memo(function _Button({ children }) {
   const createRipple = React.useCallback(
