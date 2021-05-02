@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Login from "./pages/Login";
-import logo from "./assets/images/logo.jpg";
+import logo from "@images/logo.jpg";
 import styles from "./Nav.module.css";
 import Button from "./components/Button";
 import clsx from "clsx";

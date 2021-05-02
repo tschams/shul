@@ -1,4 +1,5 @@
 const mix = require("laravel-mix");
+const path = require('path');
 
 /*
  |--------------------------------------------------------------------------
@@ -30,5 +31,9 @@ mix
     },
     resolve: {
       extensions: ["*", ".js", ".jsx", ".vue", ".ts", ".tsx"],
+      alias: {
+        '@components': path.resolve('client/src/components/'),
+        '@images': path.resolve('client/src/assets/images/')
+    }
     },
   });

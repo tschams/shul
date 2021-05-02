@@ -23,7 +23,14 @@
     "strictNullChecks": true,
     "skipLibCheck": true,
     "types": ["node"],
-    "typeRoots": ["client/node_modules/@types"]
+    "typeRoots": ["client/node_modules/@types"],
+    "baseUrl": "./client/src/",
+    "paths": {
+      "@components/*": [
+        "components/*"
+      ],
+      "@images/*": ["assets/images/*"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "client/node_modules"]
