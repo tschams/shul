@@ -14,7 +14,10 @@
   font-size: 16px;
   line-height: 1.5;
 }
-
+.forSingle {
+  font-size: 14px;
+  font-family: "Archivo", sans-serif;
+}
 /* Input */
 .radio > input {
   appearance: none;
@@ -36,14 +39,12 @@
   pointer-events: none;
   transition: opacity 0.3s, transform 0.2s;
 }
-
 /* Span */
 .radio > span {
   display: inline-block;
   width: 100%;
   cursor: pointer;
 }
-
 /* Circle */
 .radio > span::before {
   content: "";
@@ -58,7 +59,10 @@
   vertical-align: top;
   transition: border-color 0.2s;
 }
-
+.forSingle > span::before {
+  vertical-align: middle;
+  border-color: #343434;
+}
 /* Check */
 .radio > span::after {
   content: "";
@@ -73,7 +77,6 @@
   transform: translate(5px, 5px) scale(0);
   transition: transform 0.2s;
 }
-
 /* Checked */
 .radio > input:checked {
   background-color: rgb(var(--primary-rgb, 33, 150, 243));
@@ -86,7 +89,6 @@
 .radio > input:checked + span::after {
   transform: translate(5px, 5px) scale(1);
 }
-
 /* Hover, Focus */
 .radio:hover > input {
   opacity: 0.04;
@@ -99,7 +101,6 @@
 .radio:hover > input:focus {
   opacity: 0.16;
 }
-
 /* Active */
 .radio > input:active {
   opacity: 1;
@@ -110,7 +111,6 @@
 .radio > input:active + span::before {
   border-color: rgb(var(--primary-rgb, 33, 150, 243));
 }
-
 /* Disabled */
 .radio > input:disabled {
   opacity: 0;
