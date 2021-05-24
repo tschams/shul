@@ -2,16 +2,14 @@ import React from "react";
 import RadioButton from "./RadioButton";
 
 export default React.memo(function _RadioButtons() {
-  const [genderType, setGenderType] = React.useState<null | string>(null);
-
   const genders = ["male", "female"];
 
+  const [genderType, setGenderType] = React.useState<null | string>(null);
   const radioChangeHandler = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) =>
       setGenderType(event.target.value),
     []
   );
-
   return (
     <>
       <div style={{ margin: "0 auto", padding: "4em", maxWidth: "800px" }}>
