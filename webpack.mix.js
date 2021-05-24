@@ -16,9 +16,8 @@ mix
   .js("resources/js/app.js", "public/js")
   // .react()
   // .sass("resources/sass/app.scss", "public/css")
-  // .postCss("resources/css/app.css", "public/css", [
-  //   //
-  // ])
+  .postCss("resources/css/app.css", "public/css", [
+  ])
   .webpackConfig({
     module: {
       rules: [
