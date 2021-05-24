@@ -4,12 +4,13 @@ import Nav from "./Nav";
 import { capitalizeFirstLetter } from "./utils";
 
 export default React.memo(function _App() {
-  const routes = ["home", "minyanim", "shiurim", "about", "contact"];
+  const navRoutes = ["home", "minyanim", "shiurim", "about", "contact"];
+  const routes = [...navRoutes, "register"];
 
   return (
     <>
       <Router>
-        <Nav routes={routes} />
+        <Nav routes={navRoutes} />
         <Suspense fallback={<span>Loading...</span>}>
           {routes.map((route, i) => (
             <Route
