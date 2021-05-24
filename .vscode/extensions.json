@@ -1,7 +1,3 @@
 {
-  "recommendations": [
-    "dbaeumer.vscode-eslint",
-    "editorconfig.editorconfig",
-    "karye.prettier-php"
-  ]
+  "recommendations": ["dbaeumer.vscode-eslint", "editorconfig.editorconfig"]
 }
