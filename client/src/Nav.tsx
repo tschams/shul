@@ -16,13 +16,10 @@ const Img = React.memo(() => {
 });
 
 const DonateButton = React.memo(() => {
-  return <Button>Donate</Button>;
+  return <Button color="darkBlue" text="Donate" />;
 });
 
 export default React.memo(function _Nav({ routes }: Props) {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const [modal, setModal] = React.useState(false);
-
   const LoginLink = React.memo(() => {
     return !modal ? (
       <li className={styles.navLinkContainer}>
@@ -43,6 +40,9 @@ export default React.memo(function _Nav({ routes }: Props) {
   });
 
   const nodes = [Img, ...routes, LoginLink, DonateButton];
+
+  const ref = React.useRef<HTMLDivElement>(null);
+  const [modal, setModal] = React.useState(true);
 
   const handleClick = React.useCallback((e: MouseEvent) => {
     if (ref.current?.contains(e.target as Node)) {
