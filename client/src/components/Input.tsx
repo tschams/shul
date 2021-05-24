@@ -8,15 +8,18 @@ type Props = {
   name: string;
   onNameChange: Function;
   children?: React.ReactNode;
+  backgroundColor?: string | undefined;
 };
 
 export default React.memo(function _Input({
   value,
   onNameChange,
   name,
-  children
+  children,
+  backgroundColor
 }: Props) {
   const inputProps = { value, name };
+
   const inputEl = React.useRef<HTMLInputElement>(null);
   const handleChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -38,7 +41,10 @@ export default React.memo(function _Input({
       >
         {camelCaseToSentence(name)}
       </label>
-      <div className={clsx(styles.inputContainer, styles.inputContainerHover)}>
+      <div
+        style={{ "--background-color": backgroundColor } as React.CSSProperties}
+        className={clsx(styles.inputContainer, styles.inputContainerHover)}
+      >
         <input
           ref={inputEl}
           aria-invalid="false"
