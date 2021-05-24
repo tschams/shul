@@ -42,7 +42,7 @@ export default React.memo(function _Nav({ routes }: Props) {
   const nodes = [Img, ...routes, LoginLink, DonateButton];
 
   const ref = React.useRef<HTMLDivElement>(null);
-  const [modal, setModal] = React.useState(true);
+  const [modal, setModal] = React.useState(false);
 
   const handleClick = React.useCallback((e: MouseEvent) => {
     if (ref.current?.contains(e.target as Node)) {
