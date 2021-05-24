@@ -17,7 +17,7 @@
 .navLink {
   max-width: 200px;
   letter-spacing: 0.02857em;
-  padding: 6px 10px;
+  padding: 8px 14px;
 }
 .navLink:hover {
   background-color: rgba(0, 0, 0, 0.15);
