@@ -59,7 +59,7 @@ export default React.memo(function _Nav({ routes }: Props) {
   });
 
   return (
-    <>
+    <nav>
       <ul className={styles.navContainer}>
         {nodes.map((Node, i) => {
           return Node === LoginLink ? (
@@ -82,6 +82,6 @@ export default React.memo(function _Nav({ routes }: Props) {
           );
         })}
       </ul>
-    </>
+    </nav>
   );
 });
