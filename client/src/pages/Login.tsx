@@ -9,7 +9,11 @@ import clsx from "clsx";
 import RadioButton from "@components/RadioButton";
 import { Link } from "react-router-dom";
 
-export default React.memo(function _Login() {
+type Props = {
+  closeModal: Function;
+};
+
+export default React.memo(function _Login({ closeModal }: Props) {
   const inputNames = ["email", "password"];
   const icons = [faGoogle, faFacebookF];
   const iconNodes = objectArrayToObject(
@@ -82,7 +86,7 @@ export default React.memo(function _Login() {
       <span className={duplicateStyles.font14}>
         Don't have an account? &nbsp;
       </span>
-      <Link to={"/register"}>
+      <Link to={"/register"} onClick={() => closeModal()}>
         <span className={duplicateStyles.highlightedGreen}>Register Now!</span>
       </Link>
     </div>

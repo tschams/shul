@@ -34,7 +34,7 @@ export default React.memo(function _Nav({ routes }: Props) {
       </li>
     ) : (
       <div ref={ref}>
-        <Login />
+        <Login closeModal={() => setModal(false)} />
       </div>
     );
   });
