@@ -8,7 +8,9 @@
   place-items: center;
   height: 100%;
   border-radius: 1%;
-  --highlighted-green: #3fcb5e;
+  --highlighted-green-hue: 133;
+  --highlighted-green-saturation: 57%;
+  --highlighted-green-lightness: 52%;
 }
 .title {
   padding: 0;
@@ -20,7 +22,11 @@
   cursor: pointer;
 }
 .highlightedGreen {
-  color: var(--highlighted-green);
+  color: hsl(
+    var(--highlighted-green-hue),
+    var(--highlighted-green-saturation),
+    var(--highlighted-green-lightness)
+  );
 }
 .fullWidth {
   width: 100%;
