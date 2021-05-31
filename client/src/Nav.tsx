@@ -25,7 +25,9 @@ export default React.memo(function _Nav({ routes }: Props) {
       <li className={styles.navLinkContainer}>
         <span
           onClick={() => setModal(!modal)}
-          className={clsx(styles.navLink, styles.login)}
+          className={clsx(styles.navLink, styles.login, {
+            navLinkSelected: register
+          })}
         >
           <span>
             LOGIN<strong>/</strong>REGISTER
@@ -34,7 +36,10 @@ export default React.memo(function _Nav({ routes }: Props) {
       </li>
     ) : (
       <div ref={ref}>
-        <Login closeModal={() => setModal(false)} />
+        <Login
+          navLinkSelected={() => setRegister(true)}
+          closeModal={() => setModal(false)}
+        />
       </div>
     );
   });
@@ -43,6 +48,7 @@ export default React.memo(function _Nav({ routes }: Props) {
 
   const ref = React.useRef<HTMLDivElement>(null);
   const [modal, setModal] = React.useState(false);
+  const [register, setRegister] = React.useState(false);
 
   const handleClick = React.useCallback((e: MouseEvent) => {
     if (ref.current?.contains(e.target as Node)) {

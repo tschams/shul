@@ -11,9 +11,13 @@ import { Link } from "react-router-dom";
 
 type Props = {
   closeModal: Function;
+  navLinkSelected: Function;
 };
 
-export default React.memo(function _Login({ closeModal }: Props) {
+export default React.memo(function _Login({
+  closeModal,
+  navLinkSelected
+}: Props) {
   const inputNames = ["email", "password"];
   const icons = [faGoogle, faFacebookF];
   const iconNodes = objectArrayToObject(
@@ -67,6 +71,10 @@ export default React.memo(function _Login({ closeModal }: Props) {
     <Button {...buttonProps["facebookLogin"]} />
   );
 
+  const closeModalAndLinkSelected = React.useCallback(() => {
+    closeModal();
+    navLinkSelected();
+  }, [closeModal, navLinkSelected]);
   const hr = <hr className={styles.line} />;
   const divider = () => (
     <div className={clsx(duplicateStyles.flex, styles.fullWidth)}>
@@ -86,7 +94,7 @@ export default React.memo(function _Login({ closeModal }: Props) {
       <span className={duplicateStyles.font14}>
         Don't have an account? &nbsp;
       </span>
-      <Link to={"/register"} onClick={() => closeModal()}>
+      <Link to={"/register"} onClick={closeModalAndLinkSelected}>
         <span className={duplicateStyles.highlightedGreen}>Register Now!</span>
       </Link>
     </div>
