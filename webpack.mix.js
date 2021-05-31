@@ -35,6 +35,7 @@ mix
         '@images': path.resolve('client/src/assets/images/'),
         '@css': path.resolve('client/src/assets/css/'),
         '@cssComponents': path.resolve('client/src/assets/css/components/'),
+        '@cssPages': path.resolve('client/src/assets/css/pages/'),
     }
     },
   });
