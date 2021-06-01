@@ -151,7 +151,7 @@ export default React.memo(function _Login({
   ];
 
   return (
-    <form noValidate autoComplete="off" className={styles.container}>
+    <form className={styles.container}>
       <h1 className={styles.title}>Login</h1>
       {nodes.map((E, i) =>
         typeof E === "string" ? (
