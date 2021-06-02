@@ -156,6 +156,7 @@ export default React.memo(function _Login({
       {nodes.map((E, i) =>
         typeof E === "string" ? (
           <Input
+            required={true}
             backgroundColor="white"
             key={i}
             value={inputs[E]}
