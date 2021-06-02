@@ -9,6 +9,7 @@ type Props = {
   onNameChange: Function;
   children?: React.ReactNode;
   backgroundColor?: string | undefined;
+  required: boolean;
 };
 
 export default React.memo(function _Input({
@@ -16,7 +17,8 @@ export default React.memo(function _Input({
   onNameChange,
   name,
   children,
-  backgroundColor
+  backgroundColor,
+  required
 }: Props) {
   const inputProps = { value, name };
 
@@ -40,6 +42,7 @@ export default React.memo(function _Input({
         htmlFor="name"
       >
         {camelCaseToSentence(name)}
+        {required && " *"}
       </label>
       <div
         style={{ "--background-color": backgroundColor } as React.CSSProperties}
