@@ -24,7 +24,7 @@ body {
 
 #root {
   display: grid;
-  grid-template-rows: minmax(0, 18vh) minmax(0, 77vh) minmax(0, 5vh);
+  grid-template-rows: minmax(0, 20vh) minmax(0, 75vh) minmax(0, 5vh);
   width: 80%;
   margin: auto;
 }
