@@ -155,7 +155,7 @@ export default React.memo(function _Login({
             key={i}
             value={inputs[E]}
             name={E}
-            onNameChange={handleChange}
+            handleChange={handleChange}
           />
         ) : (
           <E key={i} />

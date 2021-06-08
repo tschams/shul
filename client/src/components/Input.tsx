@@ -2,19 +2,20 @@ import React from "react";
 import styles from "@cssComponents/Input.module.css";
 import clsx from "clsx";
 import { camelCaseToSentence } from "../utils";
+import HebrewKeyboard from "./HebrewKeyboard";
 
 type Props = {
   value: string;
   name: string;
-  onNameChange: Function;
-  children?: React.ReactNode;
+  handleChange: Function;
+  children?: false | string;
   backgroundColor?: string | undefined;
   required: boolean;
 };
 
 export default React.memo(function _Input({
   value,
-  onNameChange,
+  handleChange,
   name,
   children,
   backgroundColor,
@@ -23,42 +24,54 @@ export default React.memo(function _Input({
   const inputProps = { value, name };
 
   const inputEl = React.useRef<HTMLInputElement>(null);
-  const handleChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) =>
-      onNameChange({ [e.target.name]: e.target.value }),
-    [onNameChange]
+  const handleLocalChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      !children
+        ? handleChange({ [e.target.name]: e.target.value })
+        : handleChange({ [children]: e });
+    },
+    [handleChange, children]
   );
+  const [display, setDisplay] = React.useState(false);
+  const handleClick = React.useCallback(() => {
+    inputEl.current?.focus();
+    children && setDisplay(true);
+  }, [children]);
 
   return (
-    <div
-      className={styles.inputAndLabelContainer}
-      onClick={() => inputEl.current?.focus()}
-    >
-      <label
-        id="name-label"
-        className={clsx(styles.label, {
-          [styles.unTransitionLabel]: value
-        })}
-        htmlFor="name"
-      >
-        {camelCaseToSentence(name)}
-        {required && " *"}
-      </label>
-      <div
-        style={{ "--background-color": backgroundColor } as React.CSSProperties}
-        className={clsx(styles.inputContainer, styles.inputContainerHover)}
-      >
-        <input
-          ref={inputEl}
-          aria-invalid="false"
-          className={styles.input}
-          type="text"
-          id="name"
-          {...inputProps}
-          onChange={handleChange}
-        />
-        {children && <span>{children}</span>}
+    <div>
+      <div className={styles.inputAndLabelContainer} onClick={handleClick}>
+        <label
+          id="name-label"
+          className={clsx(styles.label, {
+            [styles.unTransitionLabel]: value
+          })}
+          htmlFor="name"
+        >
+          {camelCaseToSentence(name)}
+          {required && " *"}
+        </label>
+        <div
+          style={
+            { "--background-color": backgroundColor } as React.CSSProperties
+          }
+          className={clsx(styles.inputContainer, styles.inputContainerHover)}
+        >
+          <input
+            disabled={children ? true : undefined}
+            ref={inputEl}
+            aria-invalid="false"
+            className={styles.input}
+            type="text"
+            id="name"
+            {...inputProps}
+            onChange={handleLocalChange}
+          />
+        </div>
       </div>
+      {display && children && (
+        <HebrewKeyboard handleChange={handleLocalChange} />
+      )}
     </div>
   );
 });

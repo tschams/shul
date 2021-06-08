@@ -4,21 +4,25 @@ import "react-simple-keyboard/build/css/index.css";
 import layout from "simple-keyboard-layouts/build/layouts/hebrew";
 import styles from "@cssComponents/HebrewKeyboard.module.css";
 
-export default React.memo(function _HebrewKeyboard() {
-  const onChange = input => {
-    console.log("Input changed", input);
-  };
+type Props = {
+  handleChange: Function;
+};
 
-  const onKeyPress = button => {
-    console.log("Button pressed", button);
-  };
+export default React.memo(function _HebrewKeyboard({ handleChange }: Props) {
   return (
-    <div className={styles.root}>
+    <div id="keyboard" className={styles.root}>
       <Keyboard
         className={styles.keyboard}
-        onChange={onChange}
-        onKeyPress={onKeyPress}
+        onChange={handleChange}
         {...layout}
+        display={{
+          "{bksp}": "Bksp",
+          "{enter}": "Enter",
+          "{space}": "Space",
+          "{lock}": "Caps",
+          "{shift}": "Shift",
+          "{tab}": "Tab"
+        }}
       />
     </div>
   );
