@@ -8,6 +8,7 @@ import { faGoogle, faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import clsx from "clsx";
 import RadioButton from "@components/RadioButton";
 import { Link } from "react-router-dom";
+import { useOneStateObjectFromStrings } from "../customHooks";
 
 type Props = {
   closeModal: Function;
@@ -100,15 +101,8 @@ export default React.memo(function _Login({
     </div>
   );
 
-  const [inputs, setInputs] = React.useState(() => {
-    const inputArray = inputNames.map(e => ({ [e]: "" }));
-    return objectArrayToObject(inputArray);
-  });
+  const { inputs, handleChange } = useOneStateObjectFromStrings(inputNames);
   const [rememberMe, setRememberMe] = React.useState<null | boolean>(null);
-  const inputChange = React.useCallback(
-    (value: object) => setInputs({ ...inputs, ...value }),
-    [inputs]
-  );
   const rememberChange = React.useCallback(() => setRememberMe(!rememberMe), [
     rememberMe
   ]);
@@ -161,7 +155,7 @@ export default React.memo(function _Login({
             key={i}
             value={inputs[E]}
             name={E}
-            onNameChange={inputChange}
+            onNameChange={handleChange}
           />
         ) : (
           <E key={i} />
