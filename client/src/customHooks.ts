@@ -1,5 +1,5 @@
 import React from "react";
-import { objectArrayToObject } from "./utils";
+import { conditionalFunction, objectArrayToObject } from "./utils";
 
 export const useOnMount = (handler: React.EffectCallback) =>
   React.useEffect(handler, []);
@@ -16,5 +16,35 @@ export const useOneStateObjectFromStrings = (strings: string[]) => {
   return {
     inputs,
     handleChange
+  };
+};
+
+export const useToggleElemVisibility = (condition = false) => {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const [display, setDisplay] = React.useState(false);
+
+  const handleClick = React.useCallback(
+    conditionalFunction((e: MouseEvent) => {
+      if (ref.current?.contains(e.target as Node)) {
+        return;
+      }
+      setDisplay(false);
+    }, condition),
+    []
+  );
+
+  useOnMount(
+    conditionalFunction(() => {
+      document.addEventListener("mousedown", e => handleClick(e));
+      return () => {
+        document.removeEventListener("mousedown", e => handleClick(e));
+      };
+    }, condition)
+  );
+
+  return {
+    ref,
+    display,
+    setDisplay
   };
 };

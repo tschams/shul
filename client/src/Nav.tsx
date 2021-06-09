@@ -5,7 +5,7 @@ import logo from "@images/logo.jpg";
 import styles from "@css/Nav.module.css";
 import Button from "./components/Button";
 import clsx from "clsx";
-import { useOnMount } from "./customHooks";
+import { useToggleElemVisibility } from "./customHooks";
 
 type Props = {
   routes: string[];
@@ -21,10 +21,10 @@ const DonateButton = React.memo(() => {
 
 export default React.memo(function _Nav({ routes }: Props) {
   const LoginLink = React.memo(() => {
-    return !modal ? (
+    return !display ? (
       <li className={styles.navLinkContainer}>
         <span
-          onClick={() => setModal(!modal)}
+          onClick={() => setDisplay(true)}
           className={clsx(styles.navLink, styles.login, {
             navLinkSelected: register
           })}
@@ -38,7 +38,7 @@ export default React.memo(function _Nav({ routes }: Props) {
       <div ref={ref}>
         <Login
           navLinkSelected={() => setRegister(true)}
-          closeModal={() => setModal(false)}
+          closeDisplay={() => setDisplay(false)}
         />
       </div>
     );
@@ -46,23 +46,9 @@ export default React.memo(function _Nav({ routes }: Props) {
 
   const nodes = [Img, ...routes, LoginLink, DonateButton];
 
-  const ref = React.useRef<HTMLDivElement>(null);
-  const [modal, setModal] = React.useState(false);
   const [register, setRegister] = React.useState(false);
 
-  const handleClick = React.useCallback((e: MouseEvent) => {
-    if (ref.current?.contains(e.target as Node)) {
-      return;
-    }
-    setModal(false);
-  }, []);
-
-  useOnMount(() => {
-    document.addEventListener("mousedown", e => handleClick(e));
-    return () => {
-      document.removeEventListener("mousedown", e => handleClick(e));
-    };
-  });
+  const { ref, display, setDisplay } = useToggleElemVisibility();
 
   return (
     <nav>
