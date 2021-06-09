@@ -5,7 +5,7 @@ export default React.memo(function _RadioButtons() {
   const genders = ["male", "female"];
 
   const [genderType, setGenderType] = React.useState<null | string>(null);
-  const radioChangeHandler = React.useCallback(
+  const handleChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) =>
       setGenderType(event.target.value),
     []
@@ -17,9 +17,9 @@ export default React.memo(function _RadioButtons() {
         {genders.map((gender, i) => (
           <RadioButton
             key={i}
-            changed={radioChangeHandler}
+            onChange={handleChange}
             id={i.toString()}
-            isSelected={genderType === gender}
+            selected={genderType === gender}
             label={gender}
             value={gender}
           />

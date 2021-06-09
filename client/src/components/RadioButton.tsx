@@ -3,9 +3,9 @@ import styles from "@cssComponents/RadioButton.module.css";
 import clsx from "clsx";
 
 type Props = {
-  changed?: Function;
+  onChange?: Function;
   id: string;
-  isSelected: boolean;
+  selected: boolean;
   label: string;
   value?: string;
   clicked?: Function;
@@ -13,9 +13,9 @@ type Props = {
 };
 
 export default React.memo(function _RadioButton({
-  changed,
+  onChange,
   id,
-  isSelected,
+  selected,
   label,
   value,
   clicked,
@@ -29,10 +29,10 @@ export default React.memo(function _RadioButton({
       >
         <input
           id={id}
-          onChange={e => changed && changed(e)}
+          onChange={e => onChange && onChange(e)}
           value={value}
           type="radio"
-          checked={isSelected}
+          checked={selected}
           onClick={() => clicked && clicked()}
         />
         <span>{label}</span>

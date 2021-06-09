@@ -16,7 +16,7 @@ export default React.memo(function _Button({
   width,
   icon
 }: Props) {
-  const getOffset = React.useCallback((element, position: string): number => {
+  const offset = React.useCallback((element, position: string): number => {
     let offset = 0;
     while (element) {
       offset += element[`offset${capitalizeFirstLetter(position)}`];
@@ -25,7 +25,7 @@ export default React.memo(function _Button({
     return offset;
   }, []);
 
-  const createRipple = React.useCallback(
+  const ripple = React.useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
       const button = event.currentTarget;
@@ -34,8 +34,8 @@ export default React.memo(function _Button({
       const diameter = Math.max(button.clientWidth, button.clientHeight);
       const radius = diameter / 2;
 
-      const y = getOffset(button, "top");
-      const x = getOffset(button, "left");
+      const y = offset(button, "top");
+      const x = offset(button, "left");
 
       circle.style.width = circle.style.height = `${diameter}px`;
       circle.style.left = `${event.clientX - (x + radius)}px`;
@@ -50,14 +50,14 @@ export default React.memo(function _Button({
 
       button.appendChild(circle);
     },
-    [getOffset]
+    [offset]
   );
 
   return (
     <>
       <button
         className={clsx(styles.button, styles[color], width && styles[width])}
-        onClick={createRipple}
+        onClick={ripple}
       >
         <span>{icon}</span>
         <span>{text}</span>

@@ -3,7 +3,7 @@ import Select from "react-select";
 
 const options = ["chocolate", "strawberry", "vanilla"];
 
-const optionsForSelect = options.map(option => ({
+const selectOptions = options.map(option => ({
   value: option,
   label: option.charAt(0).toUpperCase() + option.slice(1)
 }));
@@ -11,17 +11,13 @@ const optionsForSelect = options.map(option => ({
 type selected = { value: string; label: string } | null;
 
 export default React.memo(function _SelectInput() {
-  const [selectedOption, setSelectedOption] = React.useState<selected>(null);
+  const [selected, setSelected] = React.useState<selected>(null);
 
-  const handleChange = React.useCallback((selectedOption: selected) => {
-    setSelectedOption(selectedOption);
-    console.log(`Option selected:`, selectedOption);
+  const handleChange = React.useCallback((selected: selected) => {
+    setSelected(selected);
+    console.log(`Option selected:`, selected);
   }, []);
   return (
-    <Select
-      value={selectedOption}
-      onChange={handleChange}
-      options={optionsForSelect}
-    />
+    <Select value={selected} onChange={handleChange} options={selectOptions} />
   );
 });

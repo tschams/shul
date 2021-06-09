@@ -11,12 +11,12 @@ import { Link } from "react-router-dom";
 import { useOneStateObjectFromStrings } from "../customHooks";
 
 type Props = {
-  closeModal: Function;
+  closeDisplay: Function;
   navLinkSelected: Function;
 };
 
 export default React.memo(function _Login({
-  closeModal,
+  closeDisplay,
   navLinkSelected
 }: Props) {
   const inputNames = ["email", "password"];
@@ -72,10 +72,10 @@ export default React.memo(function _Login({
     <Button {...buttonProps["facebookLogin"]} />
   );
 
-  const closeModalAndLinkSelected = React.useCallback(() => {
-    closeModal();
+  const handleClick = React.useCallback(() => {
+    closeDisplay();
     navLinkSelected();
-  }, [closeModal, navLinkSelected]);
+  }, [closeDisplay, navLinkSelected]);
   const hr = <hr className={styles.line} />;
   const divider = () => (
     <div className={clsx(duplicateStyles.flex, styles.fullWidth)}>
@@ -95,7 +95,7 @@ export default React.memo(function _Login({
       <span className={duplicateStyles.font14}>
         Don't have an account? &nbsp;
       </span>
-      <Link to={"/register"} onClick={closeModalAndLinkSelected}>
+      <Link to={"/register"} onClick={handleClick}>
         <span className={duplicateStyles.highlightedGreen}>Register Now!</span>
       </Link>
     </div>
@@ -103,9 +103,10 @@ export default React.memo(function _Login({
 
   const { inputs, handleChange } = useOneStateObjectFromStrings(inputNames);
   const [rememberMe, setRememberMe] = React.useState<null | boolean>(null);
-  const rememberChange = React.useCallback(() => setRememberMe(!rememberMe), [
-    rememberMe
-  ]);
+  const handleRememberChange = React.useCallback(
+    () => setRememberMe(!rememberMe),
+    [rememberMe]
+  );
 
   const rememberMeAndForgotPassEl = () => (
     <div
@@ -118,9 +119,9 @@ export default React.memo(function _Login({
     >
       <RadioButton
         label="Remember me"
-        isSelected={rememberMe === true}
+        selected={rememberMe === true}
         id="rememberMe"
-        clicked={rememberChange}
+        clicked={handleRememberChange}
         forSingle={true}
       />
       <span

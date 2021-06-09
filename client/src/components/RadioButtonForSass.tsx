@@ -5,7 +5,7 @@ import clsx from "clsx";
 type Props = {
   changed: Function;
   id: string;
-  isSelected: boolean;
+  selected: boolean;
   label: string;
   value: string;
 };
@@ -13,7 +13,7 @@ type Props = {
 export default React.memo(function _RadioButtonForSass({
   changed,
   id,
-  isSelected,
+  selected,
   label,
   value
 }: Props) {
@@ -25,7 +25,7 @@ export default React.memo(function _RadioButtonForSass({
           onChange={e => changed(e)}
           value={value}
           type="radio"
-          checked={isSelected}
+          checked={selected}
         />
         <label className={styles.label} htmlFor={id}>
           {label}
