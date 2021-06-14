@@ -18,6 +18,3 @@ export const filterObjectOfObjectsByArray = (
 ) =>
   // eslint-disable-next-line no-sequences
   arr.reduce((a, e) => ((a[e] = obj[e]), a), {});
-
-export const conditionalFunction = (handler: any, condition: boolean) =>
-  !condition && handler;

@@ -3,18 +3,33 @@ import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 import layout from "simple-keyboard-layouts/build/layouts/hebrew";
 import styles from "@cssComponents/HebrewKeyboard.module.css";
+import clsx from "clsx";
+import { useToggleElemVisibility } from "../customHooks";
 
 type Props = {
   handleChange: Function;
+  displayProp: boolean;
+  resetDisplay: Function;
 };
 
-export default React.memo(function _HebrewKeyboard({ handleChange }: Props) {
+export default React.memo(function _HebrewKeyboard({
+  handleChange,
+  displayProp,
+  resetDisplay
+}: Props) {
+  const { ref, display, setDisplay } = useToggleElemVisibility(resetDisplay);
+  React.useEffect(() => {
+    setDisplay(displayProp);
+  }, [displayProp, setDisplay]);
   return (
-    <div id="keyboard" className={styles.root}>
+    <div
+      id="keyboard"
+      className={clsx(styles.root, { [styles.hide]: !display })}
+      ref={ref}
+    >
       <Keyboard
         className={styles.keyboard}
         onChange={handleChange}
-        {...layout}
         display={{
           "{bksp}": "Bksp",
           "{enter}": "Enter",
@@ -23,6 +38,7 @@ export default React.memo(function _HebrewKeyboard({ handleChange }: Props) {
           "{shift}": "Shift",
           "{tab}": "Tab"
         }}
+        {...layout}
       />
     </div>
   );

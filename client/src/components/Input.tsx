@@ -21,18 +21,19 @@ export default React.memo(function _Input({
   backgroundColor,
   required
 }: Props) {
-  const inputProps = { value, name };
-
+  const [display, setDisplay] = React.useState(false);
+  const inputProps = { name, value };
   const inputEl = React.useRef<HTMLInputElement>(null);
   const handleLocalChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       !children
         ? handleChange({ [e.target.name]: e.target.value })
-        : handleChange({ [children]: e });
+        : handleChange({
+            [children]: e
+          });
     },
-    [handleChange, children]
+    [children, handleChange]
   );
-  const [display, setDisplay] = React.useState(false);
   const handleClick = React.useCallback(() => {
     inputEl.current?.focus();
     children && setDisplay(true);
@@ -69,8 +70,12 @@ export default React.memo(function _Input({
           />
         </div>
       </div>
-      {display && children && (
-        <HebrewKeyboard handleChange={handleLocalChange} />
+      {children && (
+        <HebrewKeyboard
+          displayProp={display}
+          handleChange={handleLocalChange}
+          resetDisplay={setDisplay}
+        />
       )}
     </div>
   );
