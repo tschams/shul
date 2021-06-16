@@ -1,6 +1,7 @@
 import React from "react";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
+// @ts-ignore: Could not find a declaration file for module 'simple-keyboard-layouts/build/layouts/hebrew'
 import layout from "simple-keyboard-layouts/build/layouts/hebrew";
 import styles from "@cssComponents/HebrewKeyboard.module.css";
 import clsx from "clsx";
