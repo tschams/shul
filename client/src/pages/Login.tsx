@@ -15,6 +15,13 @@ type Props = {
   navLinkSelected: () => void;
 };
 
+type ButtonProps = {
+  color: string;
+  width: string | undefined;
+  text: string;
+  icon: undefined | JSX.Element;
+};
+
 export default React.memo(function _Login({
   closeDisplay,
   navLinkSelected
@@ -45,19 +52,19 @@ export default React.memo(function _Login({
     login: "Login",
     googleLogin: "Google Login",
     facebookLogin: "Facebook Login"
-  };
+  } as { [x: string]: string };
   const buttonColors = {
     login: "green",
     googleLogin: "lightBlue",
     facebookLogin: "blue"
-  };
+  } as { [x: string]: string };
   const buttonIcons = {
     login: undefined,
     googleLogin: iconNodes["google"],
     facebookLogin: iconNodes["facebook-f"]
-  };
+  } as { [x: string]: undefined | JSX.Element };
   const buttonProps = objectArrayToObject(
-    buttons.map((button: string): { [x: string]: {} } => ({
+    buttons.map((button: string): { [x: string]: ButtonProps } => ({
       [button]: {
         text: buttonTexts[button],
         color: buttonColors[button],

@@ -9,7 +9,7 @@
     "resolveJsonModule": true,
     "noEmit": false,
     "jsx": "react",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "sourceMap": false,
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "esModuleInterop": true,
