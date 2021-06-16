@@ -20,7 +20,9 @@ export const useOneStateObjectFromStrings = (strings: string[]) => {
 };
 
 export const useToggleElemVisibility = (
-  resetParentDisplay: Function | undefined = undefined
+  resetParentDisplay:
+    | React.Dispatch<React.SetStateAction<boolean>>
+    | undefined = undefined
 ) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const [display, setDisplay] = React.useState(false);

@@ -7,7 +7,7 @@ import HebrewKeyboard from "./HebrewKeyboard";
 type Props = {
   value: string;
   name: string;
-  handleChange: Function;
+  handleChange: (value: object) => void;
   children?: false | string;
   backgroundColor?: string | undefined;
   required: boolean;

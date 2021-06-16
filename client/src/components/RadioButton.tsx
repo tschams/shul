@@ -3,12 +3,12 @@ import styles from "@cssComponents/RadioButton.module.css";
 import clsx from "clsx";
 
 type Props = {
-  onChange?: Function;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   id: string;
   selected: boolean;
   label: string;
   value?: string;
-  clicked?: Function;
+  clicked?: () => void;
   forSingle?: boolean;
 };
 

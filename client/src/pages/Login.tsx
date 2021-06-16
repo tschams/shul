@@ -11,8 +11,8 @@ import { Link } from "react-router-dom";
 import { useOneStateObjectFromStrings } from "../customHooks";
 
 type Props = {
-  closeDisplay: Function;
-  navLinkSelected: Function;
+  closeDisplay: () => void;
+  navLinkSelected: () => void;
 };
 
 export default React.memo(function _Login({

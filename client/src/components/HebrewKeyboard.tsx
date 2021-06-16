@@ -7,9 +7,9 @@ import clsx from "clsx";
 import { useToggleElemVisibility } from "../customHooks";
 
 type Props = {
-  handleChange: Function;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   displayProp: boolean;
-  resetDisplay: Function;
+  resetDisplay: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default React.memo(function _HebrewKeyboard({
