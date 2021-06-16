@@ -4,11 +4,12 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "commonjs",
+    "module": "esnext",
+    "strictFunctionTypes": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noEmit": false,
-    "jsx": "react",
+    "jsx": "preserve",
     "noImplicitAny": true,
     "sourceMap": false,
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
@@ -33,6 +34,6 @@
       "@cssPages/*": ["assets/css/pages/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["client/src/**/*.ts", "client/src/**/*.tsx"],
   "exclude": ["node_modules", "client/node_modules", "client/public", "public"]
 }
