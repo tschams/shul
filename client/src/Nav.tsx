@@ -11,38 +11,44 @@ type Props = {
   routes: string[];
 };
 
-const Img = React.memo(() => {
-  return <img className={styles.logo} src={logo} alt="Company Logo"></img>;
-});
+const Img = React.memo(
+  (): JSX.Element => {
+    return <img className={styles.logo} src={logo} alt="Company Logo"></img>;
+  }
+);
 
-const DonateButton = React.memo(() => {
-  return <Button color="darkBlue" text="Donate" />;
-});
+const DonateButton = React.memo(
+  (): JSX.Element => {
+    return <Button color="darkBlue" text="Donate" />;
+  }
+);
 
 export default React.memo(function _Nav({ routes }: Props) {
-  const LoginLink = React.memo(() => {
-    return !display ? (
-      <li className={styles.navLinkContainer}>
-        <span
-          onClick={() => setDisplay(true)}
-          className={clsx(styles.navLink, styles.login, {
-            navLinkSelected: register
-          })}
-        >
-          <span>
-            LOGIN<strong>/</strong>REGISTER
+  const LoginLink = React.memo(
+    (): JSX.Element => {
+      return !display ? (
+        <li className={styles.navLinkContainer}>
+          <span
+            onClick={() => setDisplay(true)}
+            className={clsx(styles.navLink, styles.login, {
+              navLinkSelected: register
+            })}
+          >
+            <span>
+              LOGIN<strong>/</strong>REGISTER
+            </span>
           </span>
-        </span>
-      </li>
-    ) : (
-      <div ref={ref}>
-        <Login
-          navLinkSelected={() => setRegister(true)}
-          closeDisplay={() => setDisplay(false)}
-        />
-      </div>
-    );
-  });
+        </li>
+      ) : (
+        <div ref={ref}>
+          <Login
+            navLinkSelected={(): void => setRegister(true)}
+            closeDisplay={(): void => setDisplay(false)}
+          />
+        </div>
+      );
+    }
+  );
 
   const nodes = [Img, ...routes, LoginLink, DonateButton];
 
@@ -53,26 +59,31 @@ export default React.memo(function _Nav({ routes }: Props) {
   return (
     <nav>
       <ul className={styles.navContainer}>
-        {nodes.map((Node, i) => {
-          return Node === LoginLink ? (
-            <Node key={i} />
-          ) : typeof Node !== "string" ? (
-            <li key={i}>
-              <Node />
-            </li>
-          ) : (
-            <li key={i} className={styles.navLinkContainer}>
-              <NavLink
-                className={styles.navLink}
-                activeClassName="navLinkSelected"
-                exact={Node === "home"}
-                to={Node === "home" ? "/" : `/${Node}`}
-              >
-                <span>{Node.toUpperCase()}</span>
-              </NavLink>
-            </li>
-          );
-        })}
+        {nodes.map(
+          (
+            Node: string | React.MemoExoticComponent<() => JSX.Element>,
+            i: number
+          ) => {
+            return Node === LoginLink ? (
+              <Node key={i} />
+            ) : typeof Node !== "string" ? (
+              <li key={i}>
+                <Node />
+              </li>
+            ) : (
+              <li key={i} className={styles.navLinkContainer}>
+                <NavLink
+                  className={styles.navLink}
+                  activeClassName="navLinkSelected"
+                  exact={Node === "home"}
+                  to={Node === "home" ? "/" : `/${Node}`}
+                >
+                  <span>{Node.toUpperCase()}</span>
+                </NavLink>
+              </li>
+            );
+          }
+        )}
       </ul>
     </nav>
   );

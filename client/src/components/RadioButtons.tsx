@@ -6,7 +6,7 @@ export default React.memo(function _RadioButtons() {
 
   const [genderType, setGenderType] = React.useState<null | string>(null);
   const handleChange = React.useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) =>
+    (event: React.ChangeEvent<HTMLInputElement>): void =>
       setGenderType(event.target.value),
     []
   );

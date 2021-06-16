@@ -21,16 +21,18 @@ export default React.memo(function _Register() {
   return (
     <form className={styles.container} autoComplete="off">
       <h1 className={styles.title}>Register</h1>
-      {nodes.map((e, i) => (
-        <Input
-          required={e !== "hebrewName" && true}
-          key={i}
-          value={inputs[e]}
-          name={e}
-          handleChange={handleChange}
-          children={e === "hebrewName" && e}
-        />
-      ))}
+      {nodes.map(
+        (e, i): JSX.Element => (
+          <Input
+            required={e !== "hebrewName" && true}
+            key={i}
+            value={inputs[e]}
+            name={e}
+            handleChange={handleChange}
+            children={e === "hebrewName" && e}
+          />
+        )
+      )}
       {RegisterButton}
     </form>
   );

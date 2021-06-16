@@ -26,7 +26,7 @@ export default React.memo(function _Button({
   }, []);
 
   const ripple = React.useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
+    (event: React.MouseEvent<HTMLButtonElement>): void => {
       event.preventDefault();
       const button = event.currentTarget;
 

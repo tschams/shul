@@ -22,7 +22,7 @@ export default React.memo(function _Login({
   const inputNames = ["email", "password"];
   const icons = [faGoogle, faFacebookF];
   const iconNodes = objectArrayToObject(
-    icons.map(i => {
+    icons.map((i): { [x: string]: JSX.Element } => {
       return {
         [i.iconName]: <FontAwesomeIcon icon={i} />
       };
@@ -57,7 +57,7 @@ export default React.memo(function _Login({
     facebookLogin: iconNodes["facebook-f"]
   };
   const buttonProps = objectArrayToObject(
-    buttons.map(button => ({
+    buttons.map((button: string): { [x: string]: {} } => ({
       [button]: {
         text: buttonTexts[button],
         color: buttonColors[button],
@@ -66,25 +66,27 @@ export default React.memo(function _Login({
       }
     }))
   );
-  const loginButton = () => <Button {...buttonProps["login"]} />;
-  const loginGoogleButton = () => <Button {...buttonProps["googleLogin"]} />;
-  const loginFacebookButton = () => (
+  const loginButton = (): JSX.Element => <Button {...buttonProps["login"]} />;
+  const loginGoogleButton = (): JSX.Element => (
+    <Button {...buttonProps["googleLogin"]} />
+  );
+  const loginFacebookButton = (): JSX.Element => (
     <Button {...buttonProps["facebookLogin"]} />
   );
 
-  const handleClick = React.useCallback(() => {
+  const handleClick = React.useCallback((): void => {
     closeDisplay();
     navLinkSelected();
   }, [closeDisplay, navLinkSelected]);
   const hr = <hr className={styles.line} />;
-  const divider = () => (
+  const divider = (): JSX.Element => (
     <div className={clsx(duplicateStyles.flex, styles.fullWidth)}>
       {hr}
       <i>or</i>
       {hr}
     </div>
   );
-  const registerEl = () => (
+  const registerEl = (): JSX.Element => (
     <div
       className={clsx(
         duplicateStyles.flex,
@@ -104,11 +106,11 @@ export default React.memo(function _Login({
   const { inputs, handleChange } = useOneStateObjectFromStrings(inputNames);
   const [rememberMe, setRememberMe] = React.useState<null | boolean>(null);
   const handleRememberChange = React.useCallback(
-    () => setRememberMe(!rememberMe),
+    (): void => setRememberMe(!rememberMe),
     [rememberMe]
   );
 
-  const rememberMeAndForgotPassEl = () => (
+  const rememberMeAndForgotPassEl = (): JSX.Element => (
     <div
       className={clsx(
         duplicateStyles.flex,
@@ -148,19 +150,20 @@ export default React.memo(function _Login({
   return (
     <form className={styles.container}>
       <h1 className={styles.title}>Login</h1>
-      {nodes.map((E, i) =>
-        typeof E === "string" ? (
-          <Input
-            required={true}
-            backgroundColor="white"
-            key={i}
-            value={inputs[E]}
-            name={E}
-            handleChange={handleChange}
-          />
-        ) : (
-          <E key={i} />
-        )
+      {nodes.map(
+        (E, i): JSX.Element =>
+          typeof E === "string" ? (
+            <Input
+              required={true}
+              backgroundColor="white"
+              key={i}
+              value={inputs[E]}
+              name={E}
+              handleChange={handleChange}
+            />
+          ) : (
+            <E key={i} />
+          )
       )}
     </form>
   );

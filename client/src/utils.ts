@@ -1,4 +1,4 @@
-export const camelCaseToSentence = (string: string) => {
+export const camelCaseToSentence = (string: string): string => {
   const sentenceCase = string
     .split("")
     .map(e => (e === e.toUpperCase() ? " " + e : e))
@@ -6,10 +6,10 @@ export const camelCaseToSentence = (string: string) => {
   return capitalizeFirstLetter(sentenceCase);
 };
 
-export const objectArrayToObject = (array: {}[]) =>
+export const objectArrayToObject = (array: {}[]): {} =>
   array.reduce((accumulator, current) => ({ ...accumulator, ...current }), {});
 
-export const capitalizeFirstLetter = (string: string) =>
+export const capitalizeFirstLetter = (string: string): string =>
   string.charAt(0).toUpperCase() + string.slice(1);
 
 export const filterObjectOfObjectsByArray = (

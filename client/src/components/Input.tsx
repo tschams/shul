@@ -25,7 +25,7 @@ export default React.memo(function _Input({
   const inputProps = { name, value };
   const inputEl = React.useRef<HTMLInputElement>(null);
   const handleLocalChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement>): void => {
       !children
         ? handleChange({ [e.target.name]: e.target.value })
         : handleChange({
@@ -34,7 +34,7 @@ export default React.memo(function _Input({
     },
     [children, handleChange]
   );
-  const handleClick = React.useCallback(() => {
+  const handleClick = React.useCallback((): void => {
     inputEl.current?.focus();
     children && setDisplay(true);
   }, [children]);

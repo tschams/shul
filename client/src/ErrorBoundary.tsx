@@ -4,10 +4,13 @@ export default class ErrorBoundary extends React.Component {
   state = {
     errorMessage: ""
   };
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: { toString: () => any }) {
     return { errorMessage: error.toString() };
   }
-  componentDidCatch(error, info) {
+  componentDidCatch(
+    error: { toString: () => any },
+    info: { componentStack: any }
+  ) {
     this.logErrorToServices(error.toString(), info.componentStack);
   }
   // A fake logging service 😬

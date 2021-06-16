@@ -29,11 +29,13 @@ export default React.memo(function _RadioButton({
       >
         <input
           id={id}
-          onChange={e => onChange && onChange(e)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
+            onChange && onChange(e)
+          }
           value={value}
           type="radio"
           checked={selected}
-          onClick={() => clicked && clicked()}
+          onClick={(): void => clicked && clicked()}
         />
         <span>{label}</span>
       </label>
