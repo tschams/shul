@@ -10,10 +10,10 @@ import RadioButton from "@components/RadioButton";
 import { Link } from "react-router-dom";
 import { useOneStateObjectFromStrings } from "../customHooks";
 
-type Props = {
+interface IProps {
   closeDisplay: () => void;
   navLinkSelected: () => void;
-};
+}
 
 type ButtonProps = {
   color: string;
@@ -25,10 +25,12 @@ type ButtonProps = {
 export default React.memo(function _Login({
   closeDisplay,
   navLinkSelected
-}: Props) {
+}: React.PropsWithChildren<IProps>): JSX.Element {
   const inputNames = ["email", "password"];
   const icons = [faGoogle, faFacebookF];
-  const iconNodes = objectArrayToObject(
+  const iconNodes: {
+    [x: string]: JSX.Element;
+  } = objectArrayToObject(
     icons.map((i): { [x: string]: JSX.Element } => {
       return {
         [i.iconName]: <FontAwesomeIcon icon={i} />
@@ -42,10 +44,9 @@ export default React.memo(function _Login({
     "font14",
     "highlightedGreen"
   ];
-  const duplicateStyles = filterObjectOfObjectsByArray(
-    styles,
-    duplicateClasses
-  );
+  const duplicateStyles: {
+    [x: string]: string;
+  } = filterObjectOfObjectsByArray(styles, duplicateClasses);
 
   const buttons = ["login", "googleLogin", "facebookLogin"];
   const buttonTexts = {
@@ -53,17 +54,20 @@ export default React.memo(function _Login({
     googleLogin: "Google Login",
     facebookLogin: "Facebook Login"
   } as { [x: string]: string };
+
   const buttonColors = {
     login: "green",
     googleLogin: "lightBlue",
     facebookLogin: "blue"
   } as { [x: string]: string };
+
   const buttonIcons = {
     login: undefined,
     googleLogin: iconNodes["google"],
     facebookLogin: iconNodes["facebook-f"]
   } as { [x: string]: undefined | JSX.Element };
-  const buttonProps = objectArrayToObject(
+
+  const buttonProps: { [x: string]: ButtonProps } = objectArrayToObject(
     buttons.map((button: string): { [x: string]: ButtonProps } => ({
       [button]: {
         text: buttonTexts[button],
@@ -85,7 +89,8 @@ export default React.memo(function _Login({
     closeDisplay();
     navLinkSelected();
   }, [closeDisplay, navLinkSelected]);
-  const hr = <hr className={styles.line} />;
+
+  const hr: JSX.Element = <hr className={styles.line} />;
   const divider = (): JSX.Element => (
     <div className={clsx(duplicateStyles.flex, styles.fullWidth)}>
       {hr}
@@ -93,6 +98,7 @@ export default React.memo(function _Login({
       {hr}
     </div>
   );
+
   const registerEl = (): JSX.Element => (
     <div
       className={clsx(
@@ -110,7 +116,12 @@ export default React.memo(function _Login({
     </div>
   );
 
-  const { inputs, handleChange } = useOneStateObjectFromStrings(inputNames);
+  const { inputs, handleChange } = useOneStateObjectFromStrings(inputNames) as {
+    inputs: {
+      [x: string]: string;
+    };
+    handleChange: (value: {}) => void;
+  };
   const [rememberMe, setRememberMe] = React.useState<null | boolean>(null);
   const handleRememberChange = React.useCallback(
     (): void => setRememberMe(!rememberMe),
@@ -144,7 +155,7 @@ export default React.memo(function _Login({
       </span>
     </div>
   );
-  const nodes = [
+  const nodes: (string | (() => JSX.Element))[] = [
     ...inputNames,
     loginButton,
     rememberMeAndForgotPassEl,
@@ -158,7 +169,7 @@ export default React.memo(function _Login({
     <form className={styles.container}>
       <h1 className={styles.title}>Login</h1>
       {nodes.map(
-        (E, i): JSX.Element =>
+        (E: string | (() => JSX.Element), i: number): JSX.Element =>
           typeof E === "string" ? (
             <Input
               required={true}

@@ -12,16 +12,18 @@ export default React.memo(function _App() {
       <Router>
         <Nav routes={navRoutes} />
         <Suspense fallback={<span>Loading...</span>}>
-          {routes.map((route, i) => (
-            <Route
-              key={i}
-              exact={route === "home"}
-              path={route === "home" ? "/" : `/${route}`}
-              component={lazy(() =>
-                import(`./pages/${capitalizeFirstLetter(route)}`)
-              )}
-            ></Route>
-          ))}
+          {routes.map(
+            (route: string, i: number): JSX.Element => (
+              <Route
+                key={i}
+                exact={route === "home"}
+                path={route === "home" ? "/" : `/${route}`}
+                component={lazy(() =>
+                  import(`./pages/${capitalizeFirstLetter(route)}`)
+                )}
+              ></Route>
+            )
+          )}
         </Suspense>
       </Router>
       <footer className="footer">&copy; 2021 All rights reserved</footer>

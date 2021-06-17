@@ -3,19 +3,19 @@ import styles from "@cssComponents/Button.module.css";
 import clsx from "clsx";
 import { capitalizeFirstLetter } from "../utils";
 
-type Props = {
+interface IProps {
   color: string;
   width?: string;
   text: string;
   icon?: React.ReactNode;
-};
+}
 
 export default React.memo(function _Button({
   text,
   color,
   width,
   icon
-}: Props) {
+}: React.PropsWithChildren<IProps>): JSX.Element {
   const offset = React.useCallback((element, position: string): number => {
     let offset = 0;
     while (element) {
@@ -34,8 +34,8 @@ export default React.memo(function _Button({
       const diameter = Math.max(button.clientWidth, button.clientHeight);
       const radius = diameter / 2;
 
-      const y = offset(button, "top");
-      const x = offset(button, "left");
+      const y: number = offset(button, "top");
+      const x: number = offset(button, "left");
 
       circle.style.width = circle.style.height = `${diameter}px`;
       circle.style.left = `${event.clientX - (x + radius)}px`;

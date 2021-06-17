@@ -4,14 +4,14 @@ import clsx from "clsx";
 import { camelCaseToSentence } from "../utils";
 import HebrewKeyboard from "./HebrewKeyboard";
 
-type Props = {
+interface IProps {
   value: string;
   name: string;
-  handleChange: (value: object) => void;
+  handleChange: (value: {}) => void;
   children?: false | string;
   backgroundColor?: string | undefined;
   required: boolean;
-};
+}
 
 export default React.memo(function _Input({
   value,
@@ -20,7 +20,7 @@ export default React.memo(function _Input({
   children,
   backgroundColor,
   required
-}: Props) {
+}: React.PropsWithChildren<IProps>): JSX.Element {
   const [display, setDisplay] = React.useState(false);
   const inputProps = { name, value };
   const inputEl = React.useRef<HTMLInputElement>(null);
@@ -29,7 +29,7 @@ export default React.memo(function _Input({
       !children
         ? handleChange({ [e.target.name]: e.target.value })
         : handleChange({
-            [children]: e
+            [children as string]: e
           });
     },
     [children, handleChange]

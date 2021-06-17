@@ -5,7 +5,7 @@ import Button from "@components/Button";
 import { useOneStateObjectFromStrings } from "../customHooks";
 
 //unselect login/register after registering
-export default React.memo(function _Register() {
+export default React.memo(function _Register(): JSX.Element {
   const RegisterButton = <Button text="Register" color="green" />;
   const nodes = [
     "firstName",
@@ -16,13 +16,18 @@ export default React.memo(function _Register() {
     // "password",
     // "retypePassword"
   ];
-  const { inputs, handleChange } = useOneStateObjectFromStrings(nodes);
+  const { inputs, handleChange } = useOneStateObjectFromStrings(nodes) as {
+    inputs: {
+      [x: string]: string;
+    };
+    handleChange: (value: {}) => void;
+  };
 
   return (
     <form className={styles.container} autoComplete="off">
       <h1 className={styles.title}>Register</h1>
       {nodes.map(
-        (e, i): JSX.Element => (
+        (e: string, i: number): JSX.Element => (
           <Input
             required={e !== "hebrewName" && true}
             key={i}

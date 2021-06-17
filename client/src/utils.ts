@@ -7,7 +7,10 @@ export const camelCaseToSentence = (string: string): string => {
 };
 
 export const objectArrayToObject = (array: {}[]): { [x: string]: any } =>
-  array.reduce((accumulator, current) => ({ ...accumulator, ...current }), {});
+  array.reduce(
+    (accumulator: {}, current: {}): {} => ({ ...accumulator, ...current }),
+    {}
+  );
 
 export const capitalizeFirstLetter = (string: string): string =>
   string.charAt(0).toUpperCase() + string.slice(1);

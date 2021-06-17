@@ -7,9 +7,9 @@ import Button from "./components/Button";
 import clsx from "clsx";
 import { useToggleElemVisibility } from "./customHooks";
 
-type Props = {
+interface IProps {
   routes: string[];
-};
+}
 
 const Img = React.memo(
   (): JSX.Element => {
@@ -23,7 +23,9 @@ const DonateButton = React.memo(
   }
 );
 
-export default React.memo(function _Nav({ routes }: Props) {
+export default React.memo(function _Nav({
+  routes
+}: React.PropsWithChildren<IProps>): JSX.Element {
   const LoginLink = React.memo(
     (): JSX.Element => {
       return !display ? (
@@ -50,9 +52,14 @@ export default React.memo(function _Nav({ routes }: Props) {
     }
   );
 
-  const nodes = [Img, ...routes, LoginLink, DonateButton];
+  const nodes: (string | React.MemoExoticComponent<() => JSX.Element>)[] = [
+    Img,
+    ...routes,
+    LoginLink,
+    DonateButton
+  ];
 
-  const [register, setRegister] = React.useState(false);
+  const [register, setRegister] = React.useState<boolean>(false);
 
   const { ref, display, setDisplay } = useToggleElemVisibility();
 
@@ -63,7 +70,7 @@ export default React.memo(function _Nav({ routes }: Props) {
           (
             Node: string | React.MemoExoticComponent<() => JSX.Element>,
             i: number
-          ) => {
+          ): JSX.Element => {
             return Node === LoginLink ? (
               <Node key={i} />
             ) : typeof Node !== "string" ? (

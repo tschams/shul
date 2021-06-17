@@ -7,18 +7,24 @@ import styles from "@cssComponents/HebrewKeyboard.module.css";
 import clsx from "clsx";
 import { useToggleElemVisibility } from "../customHooks";
 
-type Props = {
+interface IProps {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   displayProp: boolean;
   resetDisplay: React.Dispatch<React.SetStateAction<boolean>>;
-};
+}
 
 export default React.memo(function _HebrewKeyboard({
   handleChange,
   displayProp,
   resetDisplay
-}: Props) {
-  const { ref, display, setDisplay } = useToggleElemVisibility(resetDisplay);
+}: React.PropsWithChildren<IProps>): JSX.Element {
+  const { ref, display, setDisplay } = useToggleElemVisibility(
+    resetDisplay
+  ) as {
+    ref: React.RefObject<HTMLDivElement>;
+    display: boolean;
+    setDisplay: React.Dispatch<React.SetStateAction<boolean>>;
+  };
   React.useEffect((): void => {
     setDisplay(displayProp);
   }, [displayProp, setDisplay]);

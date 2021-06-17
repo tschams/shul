@@ -8,14 +8,14 @@ export const useOneStateObjectFromStrings = (
   strings: string[]
 ): {
   inputs: { [x: string]: string };
-  handleChange: (value: object) => void;
+  handleChange: (value: {}) => void;
 } => {
   const [inputs, setInputs] = React.useState(() => {
     const inputArray = strings.map(e => ({ [e]: "" }));
     return objectArrayToObject(inputArray);
   });
   const handleChange = React.useCallback(
-    (value: object): void => setInputs({ ...inputs, ...value }),
+    (value: {}): void => setInputs({ ...inputs, ...value }),
     [inputs]
   );
   return {
@@ -34,10 +34,10 @@ export const useToggleElemVisibility = (
   setDisplay: React.Dispatch<React.SetStateAction<boolean>>;
 } => {
   const ref = React.useRef<HTMLDivElement>(null);
-  const [display, setDisplay] = React.useState(false);
+  const [display, setDisplay] = React.useState<boolean>(false);
 
   const handleClick = React.useCallback(
-    (e: MouseEvent) => {
+    (e: MouseEvent): void => {
       if (ref.current?.contains(e.target as Node)) {
         return;
       }

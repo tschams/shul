@@ -2,7 +2,7 @@ import React from "react";
 import styles from "@cssComponents/RadioButton.module.css";
 import clsx from "clsx";
 
-type Props = {
+interface IProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   id: string;
   selected: boolean;
@@ -10,7 +10,7 @@ type Props = {
   value?: string;
   clicked?: () => void;
   forSingle?: boolean;
-};
+}
 
 export default React.memo(function _RadioButton({
   onChange,
@@ -20,7 +20,7 @@ export default React.memo(function _RadioButton({
   value,
   clicked,
   forSingle
-}: Props) {
+}: React.PropsWithChildren<IProps>): JSX.Element {
   return (
     <>
       <label
