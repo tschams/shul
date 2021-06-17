@@ -7,8 +7,8 @@ export const useOnMount = (handler: React.EffectCallback): void =>
 export const useOneStateObjectFromStrings = (
   strings: string[]
 ): {
-  inputs: { [x: string]: string };
-  handleChange: (value: {}) => void;
+  inputs: { [key: string]: string };
+  handleChange: (value: { [key: string]: string }) => void;
 } => {
   const [inputs, setInputs] = React.useState(() => {
     const inputArray = strings.map(e => ({ [e]: "" }));

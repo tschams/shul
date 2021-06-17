@@ -35,7 +35,7 @@ export default React.memo(function _RadioButton({
           value={value}
           type="radio"
           checked={selected}
-          onClick={(): void => clicked && clicked()}
+          onClick={() => clicked && clicked()}
         />
         <span>{label}</span>
       </label>

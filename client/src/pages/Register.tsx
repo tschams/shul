@@ -18,7 +18,7 @@ export default React.memo(function _Register(): JSX.Element {
   ];
   const { inputs, handleChange } = useOneStateObjectFromStrings(nodes) as {
     inputs: {
-      [x: string]: string;
+      [key: string]: string;
     };
     handleChange: (value: {}) => void;
   };
@@ -26,18 +26,16 @@ export default React.memo(function _Register(): JSX.Element {
   return (
     <form className={styles.container} autoComplete="off">
       <h1 className={styles.title}>Register</h1>
-      {nodes.map(
-        (e: string, i: number): JSX.Element => (
-          <Input
-            required={e !== "hebrewName" && true}
-            key={i}
-            value={inputs[e]}
-            name={e}
-            handleChange={handleChange}
-            children={e === "hebrewName" && e}
-          />
-        )
-      )}
+      {nodes.map((e: string, i: number) => (
+        <Input
+          required={e !== "hebrewName" && true}
+          key={i}
+          value={inputs[e]}
+          name={e}
+          handleChange={handleChange}
+          children={e === "hebrewName" && e}
+        />
+      ))}
       {RegisterButton}
     </form>
   );

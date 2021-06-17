@@ -29,9 +29,9 @@ export default React.memo(function _Login({
   const inputNames = ["email", "password"];
   const icons = [faGoogle, faFacebookF];
   const iconNodes: {
-    [x: string]: JSX.Element;
+    [key: string]: JSX.Element;
   } = objectArrayToObject(
-    icons.map((i): { [x: string]: JSX.Element } => {
+    icons.map((i): { [key: string]: JSX.Element } => {
       return {
         [i.iconName]: <FontAwesomeIcon icon={i} />
       };
@@ -45,7 +45,7 @@ export default React.memo(function _Login({
     "highlightedGreen"
   ];
   const duplicateStyles: {
-    [x: string]: string;
+    [key: string]: string;
   } = filterObjectOfObjectsByArray(styles, duplicateClasses);
 
   const buttons = ["login", "googleLogin", "facebookLogin"];
@@ -53,22 +53,22 @@ export default React.memo(function _Login({
     login: "Login",
     googleLogin: "Google Login",
     facebookLogin: "Facebook Login"
-  } as { [x: string]: string };
+  };
 
   const buttonColors = {
     login: "green",
     googleLogin: "lightBlue",
     facebookLogin: "blue"
-  } as { [x: string]: string };
+  };
 
   const buttonIcons = {
     login: undefined,
     googleLogin: iconNodes["google"],
     facebookLogin: iconNodes["facebook-f"]
-  } as { [x: string]: undefined | JSX.Element };
+  };
 
-  const buttonProps: { [x: string]: ButtonProps } = objectArrayToObject(
-    buttons.map((button: string): { [x: string]: ButtonProps } => ({
+  const buttonProps: { [key: string]: ButtonProps } = objectArrayToObject(
+    buttons.map((button: string): { [key: string]: ButtonProps } => ({
       [button]: {
         text: buttonTexts[button],
         color: buttonColors[button],
@@ -77,11 +77,9 @@ export default React.memo(function _Login({
       }
     }))
   );
-  const loginButton = (): JSX.Element => <Button {...buttonProps["login"]} />;
-  const loginGoogleButton = (): JSX.Element => (
-    <Button {...buttonProps["googleLogin"]} />
-  );
-  const loginFacebookButton = (): JSX.Element => (
+  const loginButton = () => <Button {...buttonProps["login"]} />;
+  const loginGoogleButton = () => <Button {...buttonProps["googleLogin"]} />;
+  const loginFacebookButton = () => (
     <Button {...buttonProps["facebookLogin"]} />
   );
 
@@ -90,8 +88,8 @@ export default React.memo(function _Login({
     navLinkSelected();
   }, [closeDisplay, navLinkSelected]);
 
-  const hr: JSX.Element = <hr className={styles.line} />;
-  const divider = (): JSX.Element => (
+  const hr = <hr className={styles.line} />;
+  const divider = () => (
     <div className={clsx(duplicateStyles.flex, styles.fullWidth)}>
       {hr}
       <i>or</i>
@@ -99,7 +97,7 @@ export default React.memo(function _Login({
     </div>
   );
 
-  const registerEl = (): JSX.Element => (
+  const registerEl = () => (
     <div
       className={clsx(
         duplicateStyles.flex,
@@ -118,7 +116,7 @@ export default React.memo(function _Login({
 
   const { inputs, handleChange } = useOneStateObjectFromStrings(inputNames) as {
     inputs: {
-      [x: string]: string;
+      [key: string]: string;
     };
     handleChange: (value: {}) => void;
   };
@@ -128,7 +126,7 @@ export default React.memo(function _Login({
     [rememberMe]
   );
 
-  const rememberMeAndForgotPassEl = (): JSX.Element => (
+  const rememberMeAndForgotPassEl = () => (
     <div
       className={clsx(
         duplicateStyles.flex,

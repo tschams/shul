@@ -16,7 +16,7 @@ type selected = { value: string; label: string } | null;
 export default React.memo(function _SelectInput() {
   const [selected, setSelected] = React.useState<selected>(null);
 
-  const handleChange = React.useCallback((selected: selected): void => {
+  const handleChange = React.useCallback((selected: selected) => {
     setSelected(selected);
     console.log(`Option selected:`, selected);
   }, []);

@@ -11,17 +11,13 @@ interface IProps {
   routes: string[];
 }
 
-const Img = React.memo(
-  (): JSX.Element => {
-    return <img className={styles.logo} src={logo} alt="Company Logo"></img>;
-  }
-);
+const Img = React.memo(() => {
+  return <img className={styles.logo} src={logo} alt="Company Logo"></img>;
+});
 
-const DonateButton = React.memo(
-  (): JSX.Element => {
-    return <Button color="darkBlue" text="Donate" />;
-  }
-);
+const DonateButton = React.memo(() => {
+  return <Button color="darkBlue" text="Donate" />;
+});
 
 export default React.memo(function _Nav({
   routes
@@ -44,8 +40,8 @@ export default React.memo(function _Nav({
       ) : (
         <div ref={ref}>
           <Login
-            navLinkSelected={(): void => setRegister(true)}
-            closeDisplay={(): void => setDisplay(false)}
+            navLinkSelected={() => setRegister(true)}
+            closeDisplay={() => setDisplay(false)}
           />
         </div>
       );
@@ -59,7 +55,7 @@ export default React.memo(function _Nav({
     DonateButton
   ];
 
-  const [register, setRegister] = React.useState<boolean>(false);
+  const [register, setRegister] = React.useState(false);
 
   const { ref, display, setDisplay } = useToggleElemVisibility();
 
