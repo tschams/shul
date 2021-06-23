@@ -4,6 +4,8 @@ import styles from "@cssPages/Register.module.css";
 import Button from "@components/Button";
 import { useOneStateObjectFromStrings } from "../customHooks";
 import RadioButtons from "@components/RadioButtons";
+import DatePicker from "@components/DatePicker";
+import HebrewDatePicker from "@components/HebrewDatePicker";
 
 //unselect login/register after registering
 export default React.memo(function _Register(): JSX.Element {
@@ -52,6 +54,8 @@ export default React.memo(function _Register(): JSX.Element {
         )
       )}
       {RegisterButton}
+      <DatePicker />
+      <HebrewDatePicker />
     </form>
   );
 });
