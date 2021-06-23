@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "@cssComponents/Input.module.css";
 import clsx from "clsx";
-import { camelCaseToSentence } from "../utils";
+import { camelCaseToSentence, setObject } from "../utils";
 import HebrewKeyboard from "./HebrewKeyboard";
 
 interface IProps {
@@ -27,10 +27,8 @@ export default React.memo(function _Input({
   const handleLocalChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
       !children
-        ? handleChange({ [e.target.name]: e.target.value })
-        : handleChange({
-            [children as string]: e
-          });
+        ? setObject(handleChange, e.target.name, e.target.value)
+        : setObject(handleChange, children as string, e.toString());
     },
     [children, handleChange]
   );

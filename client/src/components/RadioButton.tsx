@@ -10,6 +10,7 @@ interface IProps {
   value?: string;
   clicked?: () => void;
   forSingle?: boolean;
+  name?: string;
 }
 
 export default React.memo(function _RadioButton({
@@ -19,7 +20,8 @@ export default React.memo(function _RadioButton({
   label,
   value,
   clicked,
-  forSingle
+  forSingle,
+  name
 }: React.PropsWithChildren<IProps>): JSX.Element {
   return (
     <>
@@ -36,6 +38,7 @@ export default React.memo(function _RadioButton({
           type="radio"
           checked={selected}
           onClick={() => clicked && clicked()}
+          name={name}
         />
         <span>{label}</span>
       </label>

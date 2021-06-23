@@ -28,3 +28,11 @@ export const filterObjectOfObjectsByArray = (
     ),
     {}
   );
+
+export const setObject = (
+  func: (value: {}) => void,
+  key: string,
+  value: string
+): void => {
+  func({ [key]: value });
+};
