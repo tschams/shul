@@ -13,7 +13,7 @@ export default React.memo(function _RadioButtons({
   handleChange,
   value,
   name
-}: React.PropsWithChildren<IProps>): JSX.Element {
+}: React.PropsWithoutRef<IProps>): JSX.Element {
   const genders = ["male", "female"];
 
   const handleLocalChange = React.useCallback(

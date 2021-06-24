@@ -17,7 +17,7 @@ export default React.memo(function _HebrewKeyboard({
   handleChange,
   displayProp,
   resetDisplay
-}: React.PropsWithChildren<IProps>): JSX.Element {
+}: React.PropsWithoutRef<IProps>): JSX.Element {
   const { ref, display, setDisplay } = useToggleElemVisibility(
     resetDisplay
   ) as {

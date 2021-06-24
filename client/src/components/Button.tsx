@@ -15,7 +15,7 @@ export default React.memo(function _Button({
   color,
   width,
   icon
-}: React.PropsWithChildren<IProps>): JSX.Element {
+}: React.PropsWithoutRef<IProps>): JSX.Element {
   const offset = React.useCallback((element, position: string): number => {
     let offset = 0;
     while (element) {

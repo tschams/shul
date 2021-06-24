@@ -21,7 +21,7 @@ const DonateButton = React.memo(() => {
 
 export default React.memo(function _Nav({
   routes
-}: React.PropsWithChildren<IProps>): JSX.Element {
+}: React.PropsWithoutRef<IProps>): JSX.Element {
   const LoginLink = React.memo(
     (): JSX.Element => {
       return !display ? (

@@ -22,7 +22,7 @@ export default React.memo(function _RadioButton({
   clicked,
   forSingle,
   name
-}: React.PropsWithChildren<IProps>): JSX.Element {
+}: React.PropsWithoutRef<IProps>): JSX.Element {
   return (
     <>
       <label

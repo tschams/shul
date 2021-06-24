@@ -25,7 +25,7 @@ type ButtonProps = {
 export default React.memo(function _Login({
   closeDisplay,
   navLinkSelected
-}: React.PropsWithChildren<IProps>): JSX.Element {
+}: React.PropsWithoutRef<IProps>): JSX.Element {
   const inputNames = ["email", "password"];
   const icons = [faGoogle, faFacebookF];
   const iconNodes: {
