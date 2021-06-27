@@ -26,17 +26,6 @@ export default React.memo(function _Login({
   closeDisplay,
   navLinkSelected
 }: React.PropsWithoutRef<IProps>): JSX.Element {
-  const inputNames = ["email", "password"];
-  const icons = [faGoogle, faFacebookF];
-  const iconNodes: {
-    [key: string]: JSX.Element;
-  } = objectArrayToObject(
-    icons.map((i): { [key: string]: JSX.Element } => {
-      return {
-        [i.iconName]: <FontAwesomeIcon icon={i} />
-      };
-    })
-  );
   const duplicateClasses = [
     "flex",
     "noWrap",
@@ -47,6 +36,36 @@ export default React.memo(function _Login({
   const duplicateStyles: {
     [key: string]: string;
   } = filterObjectOfObjectsByArray(styles, duplicateClasses);
+
+  const inputNames = ["email", "password"];
+  const { inputs, handleChange } = useOneStateObjectFromStrings(inputNames) as {
+    inputs: {
+      [key: string]: string;
+    };
+    handleChange: (value: {}) => void;
+  };
+
+  const inputNodes = inputNames.map((e: string, i) => () => (
+    <Input
+      key={i}
+      required={true}
+      backgroundColor="white"
+      value={inputs[e]}
+      name={e}
+      handleChange={handleChange}
+    />
+  ));
+
+  const icons = [faGoogle, faFacebookF];
+  const iconNodes: {
+    [key: string]: JSX.Element;
+  } = objectArrayToObject(
+    icons.map((i): { [key: string]: JSX.Element } => {
+      return {
+        [i.iconName]: <FontAwesomeIcon icon={i} />
+      };
+    })
+  );
 
   const buttons = ["login", "googleLogin", "facebookLogin"];
   const buttonTexts = {
@@ -114,12 +133,6 @@ export default React.memo(function _Login({
     </div>
   );
 
-  const { inputs, handleChange } = useOneStateObjectFromStrings(inputNames) as {
-    inputs: {
-      [key: string]: string;
-    };
-    handleChange: (value: {}) => void;
-  };
   const [rememberMe, setRememberMe] = React.useState<null | boolean>(null);
   const handleRememberChange = React.useCallback(
     (): void => setRememberMe(!rememberMe),
@@ -153,8 +166,9 @@ export default React.memo(function _Login({
       </span>
     </div>
   );
-  const nodes: (string | (() => JSX.Element))[] = [
-    ...inputNames,
+
+  const nodes: (() => JSX.Element)[] = [
+    ...inputNodes,
     loginButton,
     rememberMeAndForgotPassEl,
     divider,
@@ -167,19 +181,9 @@ export default React.memo(function _Login({
     <form className={styles.container}>
       <h1 className={styles.title}>Login</h1>
       {nodes.map(
-        (E: string | (() => JSX.Element), i: number): JSX.Element =>
-          typeof E === "string" ? (
-            <Input
-              required={true}
-              backgroundColor="white"
-              key={i}
-              value={inputs[E]}
-              name={E}
-              handleChange={handleChange}
-            />
-          ) : (
-            <E key={i} />
-          )
+        (E: () => JSX.Element, i: number): JSX.Element => (
+          <E key={i} />
+        )
       )}
     </form>
   );

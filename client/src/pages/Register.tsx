@@ -2,60 +2,62 @@ import Input from "@components/Input";
 import React from "react";
 import styles from "@cssPages/Register.module.css";
 import Button from "@components/Button";
-import { useOneStateObjectFromStrings } from "../customHooks";
+import { useOneStateObjectFromObjects } from "../customHooks";
 import RadioButtons from "@components/RadioButtons";
 import DatePicker from "@components/DatePicker";
 import HebrewDatePicker from "@components/HebrewDatePicker";
+import { objectArrayToStateDefaults, singleObjectToKey } from "../utils";
 
 //unselect login/register after registering
 export default React.memo(function _Register(): JSX.Element {
   const RegisterButton = <Button text="Register" color="green" />;
-  const inputNames = ["firstName", "genderType"];
-  const nodes = [
-    ...inputNames,
-    RadioButtons
-    // "lastName",
-    // "hebrewName"
-    // "email",
-    // "retypeEmail",
-    // "password",
-    // "retypePassword"
+  const inputDateComponents = [
+    { birthDate: DatePicker },
+    { jewishBirthDate: HebrewDatePicker }
   ];
-  const { inputs, handleChange } = useOneStateObjectFromStrings(inputNames) as {
+  const inputComponents = [
+    { firstName: Input },
+    { lastName: Input },
+    { hebrewName: Input },
+    { genderType: RadioButtons },
+    ...inputDateComponents,
+    { email: Input },
+    { retypeEmail: Input },
+    { password: Input },
+    { retypePassword: Input }
+  ];
+  //make form data props util and go over nav.tsx
+  const inputDefaults = objectArrayToStateDefaults(
+    inputComponents,
+    inputDateComponents
+  );
+  const { inputs, handleChange } = useOneStateObjectFromObjects(
+    inputDefaults
+  ) as {
     inputs: {
-      [key: string]: string;
+      [key: string]: string | Date;
     };
     handleChange: (value: {}) => void;
   };
 
   return (
-    <form className={styles.container} autoComplete="off">
+    <form className={styles.container}>
       <h1 className={styles.title}>Register</h1>
-      {inputNames.map((
-        e: string /* | React.NamedExoticComponent<object> */,
-        i
-      ) =>
-        e !== "genderType" ? (
-          <Input
-            required={e !== "hebrewName" && true}
+      {inputComponents.map((e: { [key: string]: any }, i: number) => {
+        const key = singleObjectToKey(e);
+        const Component = e[key];
+        return (
+          <Component
+            required={key !== "hebrewName" && true}
             key={i}
-            value={inputs[e]}
-            name={e}
+            value={inputs[key]}
+            name={key}
             handleChange={handleChange}
-            children={e === "hebrewName" && e}
+            children={key === "hebrewName" && key}
           />
-        ) : (
-          <RadioButtons
-            name={e}
-            value={inputs[e]}
-            handleChange={handleChange}
-            key={i}
-          />
-        )
-      )}
+        );
+      })}
       {RegisterButton}
-      <DatePicker />
-      <HebrewDatePicker />
     </form>
   );
 });

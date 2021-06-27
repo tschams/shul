@@ -24,6 +24,27 @@ export const useOneStateObjectFromStrings = (
   };
 };
 
+export const useOneStateObjectFromObjects = (
+  defaultStates: { [key: string]: string | Date }[]
+): {
+  inputs: { [key: string]: string | Date };
+  handleChange: (value: { [key: string]: string | Date }) => void;
+} => {
+  const [inputs, setInputs] = React.useState(() => {
+    return objectArrayToObject(defaultStates);
+  });
+  const handleChange = React.useCallback(
+    (value: {}): void => {
+      setInputs({ ...inputs, ...value });
+    },
+    [inputs]
+  );
+  return {
+    inputs,
+    handleChange
+  };
+};
+
 export const useToggleElemVisibility = (): {
   ref: React.RefObject<HTMLDivElement>;
   display: boolean;

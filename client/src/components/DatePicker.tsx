@@ -2,12 +2,21 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default React.memo(function _DatePicker(): JSX.Element {
-  const [startDate, setStartDate] = React.useState<Date | null>(new Date());
+interface IProps {
+  value: Date;
+  name: string;
+  handleChange: (value: {}) => void;
+}
+
+export default React.memo(function _DatePicker({
+  value,
+  handleChange,
+  name
+}: React.PropsWithoutRef<IProps>): JSX.Element {
   return (
     <DatePicker
-      selected={startDate}
-      onChange={(date: Date | null) => setStartDate(date)}
+      selected={value}
+      onChange={(date: Date | null) => handleChange({ [name]: date })}
     />
   );
 });

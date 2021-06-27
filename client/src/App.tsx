@@ -24,7 +24,7 @@ export default React.memo(function _App() {
           ))}
         </Suspense>
       </Router>
-      <footer className="footer">&copy; 2021 All rights reserved</footer>
+      {/* <footer className="footer">&copy; 2021 All rights reserved</footer> */}
     </>
   );
 });
