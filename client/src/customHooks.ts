@@ -24,11 +24,7 @@ export const useOneStateObjectFromStrings = (
   };
 };
 
-export const useToggleElemVisibility = (
-  resetParentDisplay:
-    | React.Dispatch<React.SetStateAction<boolean>>
-    | undefined = undefined
-): {
+export const useToggleElemVisibility = (): {
   ref: React.RefObject<HTMLDivElement>;
   display: boolean;
   setDisplay: React.Dispatch<React.SetStateAction<boolean>>;
@@ -36,16 +32,13 @@ export const useToggleElemVisibility = (
   const ref = React.useRef<HTMLDivElement>(null);
   const [display, setDisplay] = React.useState<boolean>(false);
 
-  const handleClick = React.useCallback(
-    (e: MouseEvent): void => {
-      if (ref.current?.contains(e.target as Node)) {
-        return;
-      }
-      setDisplay(false);
-      resetParentDisplay && resetParentDisplay(false);
-    },
-    [resetParentDisplay]
-  );
+  const handleClick = React.useCallback((e: MouseEvent): void => {
+    if (ref.current?.contains(e.target as Node)) {
+      return;
+    }
+    setDisplay(false);
+  }, []);
+
   useOnMount(() => {
     document.addEventListener("mousedown", e => handleClick(e));
     return () => {

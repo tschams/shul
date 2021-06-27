@@ -5,34 +5,20 @@ import "react-simple-keyboard/build/css/index.css";
 import layout from "simple-keyboard-layouts/build/layouts/hebrew";
 import styles from "@cssComponents/HebrewKeyboard.module.css";
 import clsx from "clsx";
-import { useToggleElemVisibility } from "../customHooks";
 
 interface IProps {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  displayProp: boolean;
-  resetDisplay: React.Dispatch<React.SetStateAction<boolean>>;
+  display: boolean;
 }
 
 export default React.memo(function _HebrewKeyboard({
   handleChange,
-  displayProp,
-  resetDisplay
+  display
 }: React.PropsWithoutRef<IProps>): JSX.Element {
-  const { ref, display, setDisplay } = useToggleElemVisibility(
-    resetDisplay
-  ) as {
-    ref: React.RefObject<HTMLDivElement>;
-    display: boolean;
-    setDisplay: React.Dispatch<React.SetStateAction<boolean>>;
-  };
-  React.useEffect((): void => {
-    setDisplay(displayProp);
-  }, [displayProp, setDisplay]);
   return (
     <div
       id="keyboard"
       className={clsx(styles.root, { [styles.hide]: !display })}
-      ref={ref}
     >
       <Keyboard
         className={styles.keyboard}

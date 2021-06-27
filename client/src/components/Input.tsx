@@ -3,6 +3,7 @@ import styles from "@cssComponents/Input.module.css";
 import clsx from "clsx";
 import { camelCaseToSentence, setObject } from "../utils";
 import HebrewKeyboard from "./HebrewKeyboard";
+import { useToggleElemVisibility } from "../customHooks";
 
 interface IProps {
   value: string;
@@ -21,7 +22,6 @@ export default React.memo(function _Input({
   backgroundColor,
   required
 }: React.PropsWithChildren<IProps>): JSX.Element {
-  const [display, setDisplay] = React.useState(false);
   const inputProps = { name, value };
   const inputEl = React.useRef<HTMLInputElement>(null);
   const handleLocalChange = React.useCallback(
@@ -32,11 +32,13 @@ export default React.memo(function _Input({
     },
     [children, handleChange]
   );
+
+  const { ref, display, setDisplay } = useToggleElemVisibility();
+
   const handleClick = React.useCallback((): void => {
     inputEl.current?.focus();
     children && setDisplay(true);
-  }, [children]);
-
+  }, [children, setDisplay]);
   return (
     <div>
       <div className={styles.inputAndLabelContainer} onClick={handleClick}>
@@ -69,11 +71,9 @@ export default React.memo(function _Input({
         </div>
       </div>
       {children && (
-        <HebrewKeyboard
-          displayProp={display}
-          handleChange={handleLocalChange}
-          resetDisplay={setDisplay}
-        />
+        <div ref={ref}>
+          <HebrewKeyboard display={display} handleChange={handleLocalChange} />
+        </div>
       )}
     </div>
   );
