@@ -1,7 +1,7 @@
 import React from "react";
 import RadioButton from "./RadioButton";
 import styles from "@cssComponents/RadioButtons.module.css";
-import { setObject } from "../utils";
+import { setAndLiftUpObject } from "../utils";
 
 interface IProps {
   handleChange: (value: {}) => void;
@@ -18,7 +18,7 @@ export default React.memo(function _RadioButtons({
 
   const handleLocalChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
-      setObject(handleChange, e.target.name, e.target.value);
+      setAndLiftUpObject(handleChange, e.target.name, e.target.value);
     },
     [handleChange]
   );

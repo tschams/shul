@@ -1,28 +1,22 @@
+import { IDateForm } from "../global";
 import React from "react";
-import {
-  ReactJewishDatePicker,
-  BasicJewishDay,
-  BasicJewishDate
-} from "react-jewish-datepicker";
+import { BasicJewishDay, ReactJewishDatePicker } from "react-jewish-datepicker";
 
-export default React.memo(function _HebrewDatePicker(): JSX.Element {
-  const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
-  const basicJewishDate: BasicJewishDate = {
-    day: 13,
-    monthName: "Elul",
-    year: 5788
-  };
-
+export default React.memo(function _HebrewDatePicker({
+  value,
+  handleChange,
+  name
+}: React.PropsWithoutRef<IDateForm>): JSX.Element {
   return (
     <>
       <div>
-        Hebrew:
+        Hebrew Birthday
         <ReactJewishDatePicker
-          value={basicJewishDate}
+          value={value}
           isHebrew
-          onClick={(day: BasicJewishDay) => {
-            setBasicJewishDay(day);
-          }}
+          onClick={(day: BasicJewishDay) =>
+            handleChange({ [name]: day.jewishDate })
+          }
         />
       </div>
     </>

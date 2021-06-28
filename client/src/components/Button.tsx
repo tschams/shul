@@ -2,11 +2,10 @@ import React from "react";
 import styles from "@cssComponents/Button.module.css";
 import clsx from "clsx";
 import { capitalizeFirstLetter } from "../utils";
+import { IBaseButton } from "../global";
 
-interface IProps {
-  color: string;
+interface IProps extends IBaseButton {
   width?: string;
-  text: string;
   icon?: React.ReactNode;
 }
 

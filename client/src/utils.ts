@@ -29,10 +29,22 @@ export const filterObjectOfObjectsByArray = (
     {}
   );
 
-export const setObject = (
+export const setAndLiftUpObject = (
   func: (value: {}) => void,
   key: string,
   value: string
 ): void => {
   func({ [key]: value });
 };
+
+export const objectArrayToStateDefaults = (
+  strings: { [key: string]: React.ReactNode }[],
+  stringExceptions: { [key: string]: React.ReactNode }[] | undefined = undefined
+): { [key: string]: string | Date }[] =>
+  strings.map((e: { [key: string]: React.ReactNode }) => ({
+    [singleObjectToKey(e)]: !stringExceptions?.includes(e) ? "" : new Date()
+  }));
+
+export const singleObjectToKey = (obj: {
+  [key: string]: React.ReactNode;
+}): string => Object.keys(obj).toString();

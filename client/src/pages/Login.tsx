@@ -8,35 +8,23 @@ import { faGoogle, faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import clsx from "clsx";
 import RadioButton from "@components/RadioButton";
 import { Link } from "react-router-dom";
-import { useOneStateObjectFromStrings } from "../customHooks";
+import { useOneStateObjectFromObjects } from "../customHooks";
+import { IBaseButton } from "../global";
 
 interface IProps {
   closeDisplay: () => void;
   navLinkSelected: () => void;
 }
 
-type ButtonProps = {
-  color: string;
+interface IButtonProps extends IBaseButton {
   width: string | undefined;
-  text: string;
   icon: undefined | JSX.Element;
-};
+}
 
 export default React.memo(function _Login({
   closeDisplay,
   navLinkSelected
 }: React.PropsWithoutRef<IProps>): JSX.Element {
-  const inputNames = ["email", "password"];
-  const icons = [faGoogle, faFacebookF];
-  const iconNodes: {
-    [key: string]: JSX.Element;
-  } = objectArrayToObject(
-    icons.map((i): { [key: string]: JSX.Element } => {
-      return {
-        [i.iconName]: <FontAwesomeIcon icon={i} />
-      };
-    })
-  );
   const duplicateClasses = [
     "flex",
     "noWrap",
@@ -47,6 +35,39 @@ export default React.memo(function _Login({
   const duplicateStyles: {
     [key: string]: string;
   } = filterObjectOfObjectsByArray(styles, duplicateClasses);
+
+  const inputNames = ["email", "password"];
+  const inputDefaults = inputNames.map(e => ({ [e]: "" }));
+  const { inputs, handleChange } = useOneStateObjectFromObjects(
+    inputDefaults
+  ) as {
+    inputs: {
+      [key: string]: string;
+    };
+    handleChange: (value: {}) => void;
+  };
+
+  const inputNodes = inputNames.map((e: string, i) => () => (
+    <Input
+      key={i}
+      required={true}
+      backgroundColor="white"
+      value={inputs[e]}
+      name={e}
+      handleChange={handleChange}
+    />
+  ));
+
+  const icons = [faGoogle, faFacebookF];
+  const iconNodes: {
+    [key: string]: JSX.Element;
+  } = objectArrayToObject(
+    icons.map((i): { [key: string]: JSX.Element } => {
+      return {
+        [i.iconName]: <FontAwesomeIcon icon={i} />
+      };
+    })
+  );
 
   const buttons = ["login", "googleLogin", "facebookLogin"];
   const buttonTexts = {
@@ -67,8 +88,8 @@ export default React.memo(function _Login({
     facebookLogin: iconNodes["facebook-f"]
   };
 
-  const buttonProps: { [key: string]: ButtonProps } = objectArrayToObject(
-    buttons.map((button: string): { [key: string]: ButtonProps } => ({
+  const buttonProps: { [key: string]: IButtonProps } = objectArrayToObject(
+    buttons.map((button: string): { [key: string]: IButtonProps } => ({
       [button]: {
         text: buttonTexts[button],
         color: buttonColors[button],
@@ -114,12 +135,6 @@ export default React.memo(function _Login({
     </div>
   );
 
-  const { inputs, handleChange } = useOneStateObjectFromStrings(inputNames) as {
-    inputs: {
-      [key: string]: string;
-    };
-    handleChange: (value: {}) => void;
-  };
   const [rememberMe, setRememberMe] = React.useState<null | boolean>(null);
   const handleRememberChange = React.useCallback(
     (): void => setRememberMe(!rememberMe),
@@ -153,8 +168,9 @@ export default React.memo(function _Login({
       </span>
     </div>
   );
-  const nodes: (string | (() => JSX.Element))[] = [
-    ...inputNames,
+
+  const nodes: (() => JSX.Element)[] = [
+    ...inputNodes,
     loginButton,
     rememberMeAndForgotPassEl,
     divider,
@@ -167,19 +183,9 @@ export default React.memo(function _Login({
     <form className={styles.container}>
       <h1 className={styles.title}>Login</h1>
       {nodes.map(
-        (E: string | (() => JSX.Element), i: number): JSX.Element =>
-          typeof E === "string" ? (
-            <Input
-              required={true}
-              backgroundColor="white"
-              key={i}
-              value={inputs[E]}
-              name={E}
-              handleChange={handleChange}
-            />
-          ) : (
-            <E key={i} />
-          )
+        (E: () => JSX.Element, i: number): JSX.Element => (
+          <E key={i} />
+        )
       )}
     </form>
   );

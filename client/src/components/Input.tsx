@@ -1,14 +1,12 @@
 import React from "react";
 import styles from "@cssComponents/Input.module.css";
 import clsx from "clsx";
-import { camelCaseToSentence, setObject } from "../utils";
+import { camelCaseToSentence, setAndLiftUpObject } from "../utils";
 import HebrewKeyboard from "./HebrewKeyboard";
 import { useToggleElemVisibility } from "../customHooks";
+import { IInputForm } from "../global";
 
-interface IProps {
-  value: string;
-  name: string;
-  handleChange: (value: {}) => void;
+interface IProps extends IInputForm {
   children?: false | string;
   backgroundColor?: string | undefined;
   required: boolean;
@@ -27,8 +25,8 @@ export default React.memo(function _Input({
   const handleLocalChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
       !children
-        ? setObject(handleChange, e.target.name, e.target.value)
-        : setObject(handleChange, children as string, e.toString());
+        ? setAndLiftUpObject(handleChange, e.target.name, e.target.value)
+        : setAndLiftUpObject(handleChange, children as string, e.toString());
     },
     [children, handleChange]
   );
