@@ -40,7 +40,8 @@ export default React.memo(function _Input({
     children && setDisplay(true);
   }, [children, setDisplay]);
   return (
-    <div>
+    //make sure this div does not extend because clicking on that extension would be part of div to close keyboard unless second ref
+    <div ref={ref}>
       <div className={styles.inputAndLabelContainer} onClick={handleClick}>
         <label
           id="name-label"
@@ -63,15 +64,16 @@ export default React.memo(function _Input({
             ref={inputEl}
             aria-invalid="false"
             className={styles.input}
-            type="text"
+            type="search"
             id="name"
             {...inputProps}
             onChange={handleLocalChange}
+            autoComplete="off"
           />
         </div>
       </div>
       {children && (
-        <div ref={ref}>
+        <div>
           <HebrewKeyboard display={display} handleChange={handleLocalChange} />
         </div>
       )}
