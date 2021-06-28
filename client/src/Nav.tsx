@@ -74,7 +74,11 @@ export default React.memo(function _Nav({
                 <Node />
               </li>
             ) : (
-              <li key={i} className={styles.navLinkContainer}>
+              <li
+                key={i}
+                className={styles.navLinkContainer}
+                onClick={() => setRegister(false)}
+              >
                 <NavLink
                   className={styles.navLink}
                   activeClassName="navLinkSelected"
