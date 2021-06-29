@@ -1,3 +1,11 @@
 .title {
   margin: 0;
 }
+.columnGrid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+.rowGrid {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+}

@@ -1,6 +1,7 @@
 import { IDateForm } from "../global";
 import React from "react";
 import { BasicJewishDay, ReactJewishDatePicker } from "react-jewish-datepicker";
+import styles from "@cssComponents/HebrewDatePicker.module.css";
 
 export default React.memo(function _HebrewDatePicker({
   value,
@@ -8,17 +9,15 @@ export default React.memo(function _HebrewDatePicker({
   name
 }: React.PropsWithoutRef<IDateForm>): JSX.Element {
   return (
-    <>
-      <div>
-        Hebrew Birthday
-        <ReactJewishDatePicker
-          value={value}
-          isHebrew
-          onClick={(day: BasicJewishDay) =>
-            handleChange({ [name]: day.jewishDate })
-          }
-        />
-      </div>
-    </>
+    <div className={styles.grid}>
+      <h4 className={styles.title}>Hebrew Birthday</h4>
+      <ReactJewishDatePicker
+        value={value}
+        isHebrew
+        onClick={(day: BasicJewishDay) =>
+          handleChange({ [name]: day.jewishDate })
+        }
+      />
+    </div>
   );
 });

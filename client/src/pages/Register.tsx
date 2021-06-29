@@ -8,6 +8,7 @@ import DatePicker from "@components/DatePicker";
 import HebrewDatePicker from "@components/HebrewDatePicker";
 import { objectArrayToStateDefaults, singleObjectToKey } from "../utils";
 import ReCAPTCHA from "react-google-recaptcha";
+import clsx from "clsx";
 
 function onChange(value: string | null) {
   console.log("Captcha value:", value);
@@ -52,7 +53,7 @@ export default React.memo(function _Register(): JSX.Element {
 
   return (
     <form className={styles.container}>
-      <h1 className={styles.title}>Register</h1>
+      <h1 className={clsx(styles.title, styles.twoColumn)}>Register</h1>
       {inputComponents.map((e: { [key: string]: any }, i: number) => {
         const key = singleObjectToKey(e);
         const Component = e[key];
@@ -67,8 +68,8 @@ export default React.memo(function _Register(): JSX.Element {
           />
         );
       })}
-      {Recaptcha}
-      {RegisterButton}
+      <div className={styles.twoColumn}>{Recaptcha}</div>
+      <div className={styles.twoColumn}>{RegisterButton}</div>
     </form>
   );
 });

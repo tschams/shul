@@ -1,0 +1,7 @@
+.grid {
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+}
+.title {
+  margin: 0;
+}

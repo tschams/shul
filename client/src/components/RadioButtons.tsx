@@ -24,19 +24,21 @@ export default React.memo(function _RadioButtons({
   );
 
   return (
-    <>
+    <div className={styles.rowGrid}>
       <h3 className={styles.title}>Gender</h3>
-      {genders.map((gender, i) => (
-        <RadioButton
-          key={i}
-          onChange={handleLocalChange} //fix for login
-          id={i.toString()}
-          selected={value === gender}
-          label={gender}
-          value={gender}
-          name={name}
-        />
-      ))}
-    </>
+      <div className={styles.columnGrid}>
+        {genders.map((gender, i) => (
+          <RadioButton
+            key={i}
+            onChange={handleLocalChange} //fix for login
+            id={i.toString()}
+            selected={value === gender}
+            label={gender}
+            value={gender}
+            name={name}
+          />
+        ))}
+      </div>
+    </div>
   );
 });
